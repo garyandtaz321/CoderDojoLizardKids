@@ -7,15 +7,11 @@ module.exports = Menu;
 var keyup;
 var keydown;
 var selection;
-var option;
 
 Menu.prototype = {
   create: function () {
     selection = -2;
-    option[-2] = 'menu0';
-    option[0] = 'menu1';
-    option[2] = 'menu2';
-    this.asset = this.add.sprite(0, 0, option[selection]);
+    this.asset = this.add.sprite(0, 0, 'menu0');
     this.asset.scale.x = 1.5;
     this.asset.scale.y = 1.5;
 
@@ -36,6 +32,11 @@ Menu.prototype = {
 
   },
   update: function () {
-    if (selection >= 1) {selection = 2;}
-    if (selection <= -1) {selection = -2;}
+    if (selection >= 1) {
+      selection = 2;
+    }
+    if (selection <= -1) {
+      selection = -2;
+    }
+  }
 };
