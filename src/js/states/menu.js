@@ -19,7 +19,7 @@ Menu.prototype = {
 
     keyup = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyup.onDown.add(function() {
-      console.log("KEY UP");
+      console.log("KEY UP"); // Key UP
       selection += 2;
       console.log(selection);
     }, this);
@@ -32,11 +32,5 @@ Menu.prototype = {
 
   },
   update: function () {
-    if (selection >= 1) {
-      selection = 2;
-    }
-    if (selection <= -1) {
-      selection = -2;
-    }
   }
 };
