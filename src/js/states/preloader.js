@@ -17,13 +17,18 @@ Preloader.prototype = {
         this.load.setPreloadSprite(this.asset);
         this.load.image('testimage', 'assets/test.png');
         this.load.image('logo', 'assets/LizardBoys.gif');
-        this.load.image('menu0','assets/menu0.png');
-        this.load.image('menu1','assets/menu1.png');
-        this.load.image('menu2','assets/menu2.png');
+        this.load.image('menu0','assets/startbutt.png');
+        this.load.image('menu1','assets/restartbutt.png');
+        this.load.image('menu2','assets/quitbutt.png');
 
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3")
+
+        // Spritesheets
+        this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
+        this.game.load.spritesheet('restartbuttsheet','assets/restartbutt.png', 488/2, 69);
+        this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
       },
 
       create: function () {

@@ -10,8 +10,16 @@ var selection;
 
 Menu.prototype = {
   create: function () {
-    selection = -2;
-    this.asset = this.add.sprite(0, 0, 'menu0');
+    selection = 1;
+    this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
+      this.game.state.start("Game");
+    }, this, 2, 1, 2);
+    this.asset = this.add.button(0, 100, 'restartbuttsheet', function() {
+
+    }, this, 2, 1, 2);
+    this.asset = this.add.button(0, 200, 'quitbuttsheet', function() {
+
+    }, this, 2, 1, 2);
     this.asset.scale.x = 1.5;
     this.asset.scale.y = 1.5;
 
@@ -19,14 +27,24 @@ Menu.prototype = {
 
     keyup = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyup.onDown.add(function() {
-      console.log("KEY UP"); // Key UP
-      selection += 2;
+      console.log("KEY UP");
+      if (selection !== 1) {
+        selection += 1
+      }
+      else {
+        // Do nothing :)
+      }
       console.log(selection);
     }, this);
     keydown = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     keydown.onDown.add(function() {
       console.log("KEY DOWN");
-      selection -= 2;
+      if (selection !== -1) {
+        selection -= 1
+      }
+      else {
+        // Do nothing ;)
+      }
       console.log(selection);
     }, this);
 
