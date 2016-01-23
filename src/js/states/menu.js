@@ -21,7 +21,10 @@ Menu.prototype = {
         this.game.state.start("Preloader");
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 200, 'quitbuttsheet', function() {
-        System.exit(0);
+
+    }, this, 2, 1, 2);
+    this.asset = this.add.button(0, 300, 'InsructButts', function() {
+      this.game.state.start("instruction");
     }, this, 2, 1, 2);
     this.asset.scale.x = 1.5;
     this.asset.scale.y = 1.5;

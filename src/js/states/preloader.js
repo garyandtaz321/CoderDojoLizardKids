@@ -20,7 +20,6 @@ Preloader.prototype = {
         this.load.image('menu0','assets/startbutt.png');
         this.load.image('menu1','assets/restartbutt.png');
         this.load.image('menu2','assets/quitbutt.png');
-        this.load.image('Background','assets/Backgroound.jpg.png');
 
         // Audio
 
@@ -30,6 +29,8 @@ Preloader.prototype = {
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
         this.game.load.spritesheet('restartbuttsheet','assets/restartbutt.png', 488/2, 69);
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
+        this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
+        this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
       },
 
       create: function () {
