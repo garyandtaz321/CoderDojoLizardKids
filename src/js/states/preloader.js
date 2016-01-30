@@ -21,9 +21,13 @@ Preloader.prototype = {
         this.load.image('menu1','assets/restartbutt.png');
         this.load.image('menu2','assets/quitbutt.png');
         this.load.image('ZAMBIE','assets/zombie_single.png');
-        // Audio
+        this.load.image('title','assets/sausagefingerstitle.png');
 
-        this.load.audio("gameboop","assets/BootSound.mp3")
+        // Audio
+            // Sound Effects
+            this.load.audio("gameboop","assets/BootSound.mp3");
+            // Music
+            this.load.audio('titlesong',"assets/trolltoll.wav");
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
@@ -31,6 +35,20 @@ Preloader.prototype = {
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
         this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
+
+            // Character spritesheets
+                // Player spritesheets
+                this.game.load.spritesheet('playeridle','assets/playeridle.png',64/2,32);
+                this.game.load.spritesheet('playerwalk','assets/playerwalk.png',64/2,32);
+
+
+
+        //Backgrounds
+        this.load.image('titlebk','assets/shreddedbeef.png');
+        /*
+        Side note:
+        Wowie!! We have a lot of comments! Organization is important tho so it's all good ;)
+         */
       },
 
       create: function () {

@@ -12,6 +12,15 @@ var selection;
 
 Menu.prototype = {
   create: function () {
+    //Play song
+
+    this.music = this.game.add.audio('titlesong');
+    this.music.volume = 50;
+    this.music.loop = true;
+    this.music.play();
+
+    // Show background
+    this.asset = this.add.sprite(0, 0, 'titlebk')
 
     selection = 1;
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
