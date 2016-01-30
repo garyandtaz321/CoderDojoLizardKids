@@ -11,6 +11,7 @@ var selection;
 
 
 Menu.prototype = {
+  music: null,
   create: function () {
     //Play song
 
@@ -65,5 +66,9 @@ Menu.prototype = {
 
   },
   update: function () {
+  },
+  shutdown: function () {
+    this.music.volume = 0;
+    this.music.stop();
   }
 };
