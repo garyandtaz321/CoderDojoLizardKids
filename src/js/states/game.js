@@ -3,41 +3,44 @@ var Player = require('../models/player');
 var Game = function () {
   this.testentity = null;
 };
-
+var sprite;
+var group;
+var cursors;
 module.exports = Game;
 
 Game.prototype = {
 
   create: function () {
-    var x = (this.game.width / 2) - 100;
-    var y = (this.game.height / 2) - 50;
-
-    this.testentity = new Player(this.game, x, y);
-    this.testentity.anchor.setTo(0.5, 0.5);
-
-    this.input.onDown.add(this.onInputDown, this);
+    this.physics.startSystem(Phaser.Physics.ARCADE);
+    sprite = this.add.sprite(32, 200, 'ZAMBIE');
+    this.physics.arcade.enable(sprite)
+    cursors = this.input.keyboard.createCursorKeys();
   },
 
   update: function () {
-    var x, y, cx, cy, dx, dy, angle, scale;
+    sprite.body.velocity.x = 0;
+    sprite.body.velocity.y = 0;
 
-    x = this.input.position.x;
-    y = this.input.position.y;
-    cx = this.world.centerX;
-    cy = this.world.centerY;
+    if (cursors.left.isDown)
+    {
+      sprite.body.velocity.x = -200;
+    }
+    else if (cursors.right.isDown)
+    {
+      sprite.body.velocity.x = 200;
+    }
 
-    angle = Math.atan2(y - cy, x - cx) * (180 / Math.PI);
-    this.testentity.angle = angle;
+    if (cursors.up.isDown)
+    {
+      sprite.body.velocity.y = -200;
+    }
+    else if (cursors.down.isDown)
+    {
+      sprite.body.velocity.y = 200;
+    }
 
-    dx = x - cx;
-    dy = y - cy;
-    scale = Math.sqrt(dx * dx + dy * dy) / 100;
-
-    this.testentity.scale.x = scale * 0.6;
-    this.testentity.scale.y = scale * 0.6;
   },
 
-  onInputDown: function () {
-    this.game.state.start('Menu');
-  }
+
+
 };
