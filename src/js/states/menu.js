@@ -11,7 +11,20 @@ var selection;
 
 
 Menu.prototype = {
+  music: null,
   create: function () {
+    //Play song
+
+    this.music = this.game.add.audio('titlesong');
+    this.music.volume = 50;
+    this.music.loop = true;
+    this.music.play();
+
+    // Show background
+    this.asset = this.add.sprite(0, 0, 'titlebk')
+
+    // Show title
+    this.asset = this.add.sprite(400, 0, 'title')
 
     selection = 1;
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
@@ -56,5 +69,9 @@ Menu.prototype = {
 
   },
   update: function () {
+  },
+  shutdown: function () {
+    this.music.volume = 0;
+    this.music.stop();
   }
 };

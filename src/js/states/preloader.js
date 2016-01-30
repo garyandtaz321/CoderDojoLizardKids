@@ -31,8 +31,6 @@ Preloader.prototype = {
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
         this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
-        this.game.load.spritesheet('Player','assets/playerwalk.png', 64/2, 32);
-
       },
 
       create: function () {
