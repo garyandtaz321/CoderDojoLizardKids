@@ -2,37 +2,40 @@ var Player = require('../models/player');
 
 var Game = function () {
     this.testentity = null;
-}
+};
 
 var sprite;
 var Enemies;
+var Enemies1;
 var points;
+var tween1;
+var tweenB;
 var group;
 this.bmd = null;
 var cursors;
+
 var Keys;
 var right;
 var left;
 module.exports = Game;
-this.points = {
-    'x': [ 32, 128, 256, 384, 512, 608 ],
-    'y': [ 240, 240, 240, 240, 240, 240 ]
-};
+
 Game.prototype = {
 
     create: function () {
         Enemies = this.add.group();
-
+        Enemies1 = this.add.group();
 
 
         Enemies.create( 100 , 436, 'ZAMBIE');
         Enemies.create( 200 , 128, 'ZAMBIE');
         Enemies.create( 300 , 345, 'ZAMBIE');
-        Enemies.create( 400 , 543, 'ZAMBIE');
-        Enemies.create( 500 , 245, 'ZAMBIE');
-        Enemies.create( 600 , 143, 'ZAMBIE');
+        Enemies1.create( 400 , 235, 'ZAMBIE');
+        Enemies1.create( 500 , 245, 'ZAMBIE');
+        Enemies1.create( 600 , 143, 'ZAMBIE');
 
-
+        tween1 = this.game.add.tween(Enemies);
+        tween1.to({x: [200, 0, 0, 0], y: [200, 0, 0, 0]}, 2000, "Linear").loop(true);
+        tween1.start();
 
         sprite = this.add.group();
         sprite.enableBody = true;
@@ -55,9 +58,9 @@ Game.prototype = {
     },
 
     update: function () {
+
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-
 
 
 
@@ -94,5 +97,10 @@ Game.prototype = {
     collisionHandler: function  (obj1, obj2) {
         this.game.state.start("Preloader");
 
-    }
+    },
+tween11: function() {
+    tween1 = this.game.add.tween(Enemies);
+    tween1.to({x: [500, 500, 400, 400], y: [250, 150, 150, 250]}, 2000, "Linear").loop(true);
+    tween1.start();
+},
 };
