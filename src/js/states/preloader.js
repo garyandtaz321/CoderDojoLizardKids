@@ -21,6 +21,7 @@ Preloader.prototype = {
         this.load.image('menu1','assets/restartbutt.png');
         this.load.image('menu2','assets/quitbutt.png');
         this.load.image('ZAMBIE','assets/zombie_single.png');
+        this.load.image('Player','assets/sausage.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3")

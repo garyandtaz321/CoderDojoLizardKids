@@ -9,6 +9,7 @@ var Enemies;
 var Enemies1;
 var points;
 var tween1;
+var tween2;
 var tweenB;
 var group;
 this.bmd = null;
@@ -26,32 +27,37 @@ Game.prototype = {
         Enemies1 = this.add.group();
 
 
-        Enemies.create( 100 , 436, 'ZAMBIE');
-        Enemies.create( 200 , 128, 'ZAMBIE');
-        Enemies.create( 300 , 345, 'ZAMBIE');
-        Enemies1.create( 400 , 235, 'ZAMBIE');
-        Enemies1.create( 500 , 245, 'ZAMBIE');
-        Enemies1.create( 600 , 143, 'ZAMBIE');
 
-        tween1 = this.game.add.tween(Enemies);
-        tween1.to({x: [200, 0, 0, 0], y: [200, 0, 0, 0]}, 2000, "Linear").loop(true);
-        tween1.start();
 
         sprite = this.add.group();
         sprite.enableBody = true;
         this.physics.startSystem(Phaser.Physics.ARCADE);
         sprite = this.add.sprite(567, 400, 'Player');
+        Enemies.create( 100 , 100, 'ZAMBIE');
+        Enemies.create( 200 , 200, 'ZAMBIE');
+        Enemies.create( 300 , 300, 'ZAMBIE');
+        Enemies1.create( 400 , 300, 'ZAMBIE');
+        Enemies1.create( 345 , 200, 'ZAMBIE');
+        Enemies1.create( 238 , 100, 'ZAMBIE');
 
+        tween1 = this.game.add.tween(Enemies);
+        tween1.to({x: [100, 150, 300, 0], y: [100, 45, 35, 0]}, 2000, "Linear").loop(true);
+        tween1.start();
+        tween2 = this.game.add.tween(Enemies1);
+        tween2.to({x: [123, 234, 287, 0], y: [123, 156, 213, 0]}, 2000, "Linear").loop(true);
+        tween2.start();
         this.physics.enable(sprite , Phaser.Physics.ARCADE);
         this.physics.enable(Enemies , Phaser.Physics.ARCADE);
+        this.physics.enable(Enemies1 , Phaser.Physics.ARCADE);
 
 
         sprite.body.collideWorldBounds=true;
 
         this.physics.arcade.enable(sprite);
         this.physics.arcade.enable(Enemies);
+        this.physics.arcade.enable(Enemies1);
 
-        sprite.body.setSize(220, 10, 0, 0);
+
         cursors = this.input.keyboard.createCursorKeys();
 
 
@@ -103,4 +109,5 @@ tween11: function() {
     tween1.to({x: [500, 500, 400, 400], y: [250, 150, 150, 250]}, 2000, "Linear").loop(true);
     tween1.start();
 },
+
 };
