@@ -6,14 +6,18 @@ var Game = function () {
 
 var sprite;
 var Enemies;
-
+var points;
 var group;
+this.bmd = null;
 var cursors;
 var Keys;
 var right;
 var left;
 module.exports = Game;
-
+this.points = {
+    'x': [ 32, 128, 256, 384, 512, 608 ],
+    'y': [ 240, 240, 240, 240, 240, 240 ]
+};
 Game.prototype = {
 
     create: function () {
@@ -21,7 +25,7 @@ Game.prototype = {
 
 
 
-            Enemies.create( 100 , 436, 'ZAMBIE');
+        Enemies.create( 100 , 436, 'ZAMBIE');
         Enemies.create( 200 , 128, 'ZAMBIE');
         Enemies.create( 300 , 345, 'ZAMBIE');
         Enemies.create( 400 , 543, 'ZAMBIE');
