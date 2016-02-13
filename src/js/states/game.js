@@ -12,6 +12,7 @@ var tween1;
 var tween2;
 var tweenB;
 var group;
+var end;
 this.bmd = null;
 var cursors;
 
@@ -30,7 +31,7 @@ Game.prototype = {
 
 
         sprite = this.add.group();
-        sprite.enableBody = true;
+
         this.physics.startSystem(Phaser.Physics.ARCADE);
         sprite = this.add.sprite(567, 400, 'Player');
         Enemies.create( 100 , 100, 'ZAMBIE');
@@ -39,7 +40,7 @@ Game.prototype = {
         Enemies1.create( 400 , 300, 'ZAMBIE');
         Enemies1.create( 345 , 200, 'ZAMBIE');
         Enemies1.create( 238 , 100, 'ZAMBIE');
-
+        end = this.add.sprite(800, 0, 'end')
         tween1 = this.game.add.tween(Enemies);
         tween1.to({x: [100, 150, 300, 0], y: [100, 45, 35, 0]}, 2000, "Linear").loop(true);
         tween1.start();
@@ -55,8 +56,10 @@ Game.prototype = {
         this.physics.arcade.enable(sprite);
         this.physics.arcade.enable(Enemies);
         this.physics.arcade.enable(Enemies1);
-
-
+        sprite.enableBody = true;
+        Enemies.enableBody = true;
+        Enemies1.enableBody = true;
+        end.enableBody = true;
         cursors = this.input.keyboard.createCursorKeys();
 
 
@@ -100,7 +103,7 @@ Game.prototype = {
 
     },
 
-    collisionHandler: function  (obj1, obj2) {
+    collisionHandler: function  (obj1, obj2 ) {
         this.game.state.start("Intro8y");
 
     },

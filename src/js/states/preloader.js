@@ -17,6 +17,7 @@ Preloader.prototype = {
         this.load.setPreloadSprite(this.asset);
 
         this.load.image('logo', 'assets/LizardBoys.gif');
+        this.load.image('goal', 'assets/TROLLGOLL.png');
         this.load.image('end', 'assets/Endofgame.png');
         this.load.image('menu0','assets/startbutt.png');
         this.load.image('menu1','assets/restartbutt.png');
