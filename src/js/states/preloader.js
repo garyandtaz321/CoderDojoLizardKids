@@ -22,9 +22,12 @@ Preloader.prototype = {
         this.load.image('menu2','assets/quitbutt.png');
         this.load.image('ZAMBIE','assets/zombie_single.png');
         this.load.image('Player','assets/sausage.png');
+        this.load.image('title','assets/sausagefingerstitle.png');
+        this.load.image('titlebk','assets/shreddedbeef.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3")
+        this.load.audio("titlesong","assets/trolltoll.wav")
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
