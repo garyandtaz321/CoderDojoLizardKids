@@ -15,8 +15,9 @@ Preloader.prototype = {
 
         this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
         this.load.setPreloadSprite(this.asset);
-        this.load.image('testimage', 'assets/test.png');
+
         this.load.image('logo', 'assets/LizardBoys.gif');
+        this.load.image('end', 'assets/Endofgame.png');
         this.load.image('menu0','assets/startbutt.png');
         this.load.image('menu1','assets/restartbutt.png');
         this.load.image('menu2','assets/quitbutt.png');
@@ -26,8 +27,9 @@ Preloader.prototype = {
         this.load.image('titlebk','assets/shreddedbeef.png');
         // Audio
 
-        this.load.audio("gameboop","assets/BootSound.mp3")
-        this.load.audio("titlesong","assets/trolltoll.wav")
+        this.load.audio("gameboop","assets/BootSound.mp3");
+        this.load.audio("titlesong","assets/trolltoll.wav");
+        this.load.audio("Instructsong","assets/Kappa123.wav");
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);

@@ -14,5 +14,6 @@ game.state.add('Preloader', require('./states/preloader'));
 game.state.add('Menu', require('./states/menu'));
 game.state.add('Game', require('./states/game'));
 game.state.add('instruction', require('./states/instruct'));
+game.state.add('Intro8y', require('./states/Intro8y'));
 
 game.state.start('Boot');

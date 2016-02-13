@@ -7,7 +7,11 @@ instruct.prototype = {
 
 
     create: function () {
-
+music: null,
+        this.music = this.game.add.audio('Instructsong');
+        this.music.volume = 50;
+        this.music.loop = true;
+        this.music.play();
         this.asset = this.add.button(0, 0, 'BasructButts', function() {
             this.game.state.start("Menu");
         }, this, 2, 1, 2);
@@ -22,6 +26,9 @@ instruct.prototype = {
 
 
         this.game.state.start('instruct');
+    },
+    shutdown: function () {
+        this.music.volume = 0;
+        this.music.stop();
     }
-
 };

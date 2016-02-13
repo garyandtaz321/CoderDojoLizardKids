@@ -50,7 +50,6 @@ Game.prototype = {
         this.physics.enable(Enemies , Phaser.Physics.ARCADE);
         this.physics.enable(Enemies1 , Phaser.Physics.ARCADE);
 
-
         sprite.body.collideWorldBounds=true;
 
         this.physics.arcade.enable(sprite);
@@ -64,7 +63,8 @@ Game.prototype = {
     },
 
     update: function () {
-
+        this.physics.arcade.collide(sprite, Enemies, this.collisionHandler, null, this);
+        this.physics.arcade.collide(sprite, Enemies1, this.collisionHandler2, null, this);
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
 
@@ -101,13 +101,18 @@ Game.prototype = {
     },
 
     collisionHandler: function  (obj1, obj2) {
-        this.game.state.start("Preloader");
+        this.game.state.start("Intro8y");
 
     },
-tween11: function() {
-    tween1 = this.game.add.tween(Enemies);
-    tween1.to({x: [500, 500, 400, 400], y: [250, 150, 150, 250]}, 2000, "Linear").loop(true);
-    tween1.start();
-},
+    collisionHandler2: function  (obj1, obj2) {
+        this.game.state.start("Intro8y");
+
+    },
+    tween11: function() {
+        tween1 = this.game.add.tween(Enemies);
+        tween1.to({x: [500, 500, 400, 400], y: [250, 150, 150, 250]}, 2000, "Linear").loop(true);
+        tween1.start();
+    },
+
 
 };
