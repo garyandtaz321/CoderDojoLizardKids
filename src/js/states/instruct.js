@@ -15,6 +15,7 @@ music: null,
         this.asset = this.add.button(0, 0, 'BasructButts', function() {
             this.game.state.start("Menu");
         }, this, 2, 1, 2);
+        this.add.sprite(275, 0, 'title')
 
         var x = this.game.width / 2;
         var y = this.game.height / 2;
