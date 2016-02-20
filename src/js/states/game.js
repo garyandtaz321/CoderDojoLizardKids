@@ -24,28 +24,24 @@ module.exports = Game;
 Game.prototype = {
 
     create: function () {
-        Enemies = this.add.group();
-        Enemies1 = this.add.group();
-        tween1 = this.game.add.tween(Enemies);
-        tween1.to({x: [100, 150, 300, 0], y: [100, 45, 35, 0]}, 2000, "Linear").loop(true);
-        tween1.start();
-        tween2 = this.game.add.tween(Enemies1);
-        tween2.to({x: [123, 234, 287, 0], y: [123, 156, 213, 0]}, 2000, "Linear").loop(true);
-        tween2.start();
 
+       Enemies =  this.game.make.group();
+        Enemies1 =  this.game.make.group();
+        for (var i = 0; i < 30; i++)
+        {
+            var s = Enemies.create(this.game.rnd.integerInRange(100, 700), this.game.rnd.integerInRange(32, 200), 'ZAMBIE');
 
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-200, 200);
+            s.body.velocity.y = this.game.rnd.integerInRange(-200, 200);
+        }
 
 
 
         this.physics.startSystem(Phaser.Physics.ARCADE);
         sprite = this.add.sprite(567, 400, 'Player');
         // Spawning
-        Enemies.create( 100 , 100, 'ZAMBIE');
-        Enemies.create( 200 , 200, 'ZAMBIE');
-        Enemies.create( 300 , 300, 'ZAMBIE');
-        Enemies1.create( 400 , 300, 'ZAMBIE');
-        Enemies1.create( 345 , 200, 'ZAMBIE');
-        Enemies1.create( 238 , 100, 'ZAMBIE');
+
         end = this.add.sprite(800, 0, 'end')
 
 
@@ -73,10 +69,14 @@ Game.prototype = {
         this.physics.arcade.collide(sprite, Enemies1, this.collisionHandler2, null, this);
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
+
+
+        this.game.debug.bodyInfo(sprite, 32, 32);
+        this.game.debug.bodyInfo(Enemies, 32, 32);
+        this.game.debug.bodyInfo(Enemies1, 32, 32);
         this.game.debug.spriteInfo(sprite);
 
 
-        this.game.debug.body(Enemies);
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
