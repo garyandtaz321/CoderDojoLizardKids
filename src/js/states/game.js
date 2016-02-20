@@ -28,7 +28,7 @@ Game.prototype = {
 
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
-        for (var i = 0; i < 1; i++)
+        for (var i = 0; i < 10; i++)
         {
             var s = Enemies.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 

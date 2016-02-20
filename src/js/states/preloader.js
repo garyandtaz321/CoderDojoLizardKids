@@ -27,11 +27,14 @@ Preloader.prototype = {
         this.load.image('title','assets/sausagefingerstitle.png');
         this.load.image('titlebk','assets/shreddedbeef.png');
         this.load.image('Winner','assets/WINNA.jpg');
+        this.load.image('Cyborg' , 'assets/CyborgDevito.png');
+        this.load.image('Devito' ,'assets/Deee.png' );
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
         this.load.audio("titlesong","assets/trolltoll.wav");
         this.load.audio("Instructsong","assets/Kappa123.wav");
+        this.load.audio("Laugh" ,"assets/Laugh.mp3");
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);

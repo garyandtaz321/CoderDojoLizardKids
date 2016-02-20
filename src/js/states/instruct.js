@@ -9,7 +9,7 @@ instruct.prototype = {
     create: function () {
 music: null,
         this.music = this.game.add.audio('Instructsong');
-        this.music.volume = 50;
+        this.music.volume = 1;
         this.music.loop = true;
         this.music.play();
         this.asset = this.add.button(0, 0, 'BasructButts', function() {
