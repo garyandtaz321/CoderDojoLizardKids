@@ -16,7 +16,7 @@ Menu.prototype = {
     //Play song
 
     this.music = this.game.add.audio('titlesong');
-    this.music.volume = 50;
+    this.music.volume = 1;
     this.music.loop = true;
     this.music.play();
 
@@ -71,7 +71,7 @@ Menu.prototype = {
   update: function () {
   },
   shutdown: function () {
-    this.music.volume = 0;
+    this.music.volume = 1;
     this.music.stop();
   }
 };

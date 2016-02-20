@@ -17,7 +17,7 @@ Splash.prototype = {
     //Play gameboop
 
     this.music = this.game.add.audio("gameboop");
-    this.music.volume = 80;
+    this.music.volume = 1;
     this.music.loop = false;
     this.music.play();
   },
