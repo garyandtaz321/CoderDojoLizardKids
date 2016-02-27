@@ -35,6 +35,7 @@ Preloader.prototype = {
         this.load.audio("titlesong","assets/trolltoll.wav");
         this.load.audio("Instructsong","assets/Kappa123.wav");
         this.load.audio("Laugh" ,"assets/Laugh.mp3");
+        this.load.audio('WinSong', 'assets/sunny.mp3')
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
