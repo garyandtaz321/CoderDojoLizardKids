@@ -17,5 +17,6 @@ game.state.add('instruction', require('./states/instruct'));
 game.state.add('Intro8y', require('./states/Intro8y'));
 game.state.add('Win', require('./states/Win'));
 game.state.add('Boss', require('./states/Levels/Boss'));
+game.state.add('Level2', require('./states/Levels/Level2'));
 
 game.state.start('Boot');

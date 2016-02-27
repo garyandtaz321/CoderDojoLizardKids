@@ -29,6 +29,7 @@ Preloader.prototype = {
         this.load.image('Winner','assets/WINNA.jpg');
         this.load.image('Cyborg' , 'assets/CyborgDevito.png');
         this.load.image('Devito' ,'assets/Deee.png' );
+        this.load.image('bullet' ,'assets/bullet5.png' );
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");

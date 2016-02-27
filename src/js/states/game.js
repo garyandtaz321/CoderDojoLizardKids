@@ -28,7 +28,7 @@ Game.prototype = {
 
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
-        for (var i = 0; i < 8; i++)
+        for (var i = 0; i < 0; i++)
         {
             var s = Enemies.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
@@ -122,7 +122,7 @@ Game.prototype = {
 
     },
     collisionHandler3: function  (obj1, obj2) {
-        this.game.state.start("Win");
+        this.game.state.start("Level2")
 
     },
 
