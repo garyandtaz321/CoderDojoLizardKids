@@ -4,6 +4,7 @@ module.exports = Boss;
 
 var sprite;
 var boss;
+var tween1;
 var back;
 Boss.prototype = {
 
@@ -11,11 +12,14 @@ Boss.prototype = {
 
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.stage.backgroundColor = '#8B0000';
         //back = this.add.sprite(400, 300, 'bossBack');
         //var spook = back.animations.add('spook', [0,1,2,3,4,5,6,7], 30, true);
         //spook.play('spook');
 
-        sprite = this.add.sprite(567, 400, 'Player');
+
+
+        sprite = this.add.sprite(567, 400, 'walker');
         var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
         pWalk.play('pWalk');
 
@@ -79,6 +83,12 @@ Boss.prototype = {
             sprite.body.velocity.y = 200;
 
         }
+
+    },
+    tween11: function() {
+        tween1 = this.game.add.tween(boss);
+        tween1.to({x: [500, 500, 400, 400], y: [250, 150, 150, 250]}, 2000, "Linear").loop(true);
+        tween1.start();
     }
 
-}
+};

@@ -36,7 +36,8 @@ Preloader.prototype = {
         this.load.audio("titlesong","assets/trolltoll.wav");
         this.load.audio("Instructsong","assets/Kappa123.wav");
         this.load.audio("Laugh" ,"assets/Laugh.mp3");
-        this.load.audio('WinSong', 'assets/sunny.mp3')
+        this.load.audio('WinSong', 'assets/sunny.mp3');
+        this.load.audio('tdBattle','assets/EnmityOfTheDarkLord.mp3');
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
@@ -44,6 +45,9 @@ Preloader.prototype = {
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
         this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
+        this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32)
+        this.game.load.spritesheet('walker','assets/walk.png', 32, 32);
+        this.game.load.spritesheet('idle', 'assets/idle.png', 32, 32);
       },
 
       create: function () {
