@@ -2,30 +2,125 @@
 var Level2 = function () {};
 
 module.exports = Level2;
-
+var Enemie1;
+var Enemie2;
+var Enemie3;
+var Enemie4;
+var Enemie5;
+var Enemie6;
 
 var sprite;
 var bullets;
-var Enemies
-
+var explosions;
 var fireRate = 100;
 var nextFire = 0;
 
 Level2.prototype = {
 
-    create: function() {
-        Enemies =  this.game.make.group();
 
-        for (var i = 0; i < 5; i++)
+
+    create: function() {
+
+
+
+
+
+
+    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        Enemie1 = this.game.make.group();
+        Enemie2 = this.game.make.group();
+        Enemie3 = this.game.make.group();
+        Enemie4 = this.game.make.group();
+        Enemie5 = this.game.make.group();
+        Enemie6 = this.game.make.group();
+        for (var i = 0; i < 2; i++)
         {
-            var s = Enemies.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie1.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        for (var i = 0; i < 2; i++)
+        {
+            var s = Enemie2.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
+            s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
+        }
+        for (var i = 0; i < 2; i++)
+        {
+            var s = Enemie3.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
+            s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
+        }
+        for (var i = 0; i < 2; i++)
+        {
+            var s = Enemie4.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
+            s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
+        }
+        for (var i = 0; i < 2; i++)
+        {
+            var s = Enemie5.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
+            s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
+        }
+        for (var i = 0; i < 2; i++)
+        {
+            var s = Enemie6.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+
+            this.game.physics.enable(s, Phaser.Physics.ARCADE);
+            s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
+            s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
+        }
+        Enemie1.setAll('body.collideWorldBounds', true);
+        Enemie1.setAll('body.bounce.x', 1);
+        Enemie1.setAll('body.bounce.y', 1);
+        Enemie1.setAll('body.minBounceVelocity', 0);
+
+// Enemies 2
+        Enemie2.setAll('body.collideWorldBounds', true);
+        Enemie2.setAll('body.bounce.x', 1);
+        Enemie2.setAll('body.bounce.y', 1);
+        Enemie2.setAll('body.minBounceVelocity', 0);
+// Enemies 3
+        Enemie3.setAll('body.collideWorldBounds', true);
+        Enemie3.setAll('body.bounce.x', 1);
+        Enemie3.setAll('body.bounce.y', 1);
+        Enemie3.setAll('body.minBounceVelocity', 0);
+// Enemies 4
+        Enemie4.setAll('body.collideWorldBounds', true);
+        Enemie4.setAll('body.bounce.x', 1);
+        Enemie4.setAll('body.bounce.y', 1);
+        Enemie4.setAll('body.minBounceVelocity', 0);
+// Enemies 5
+        Enemie5.setAll('body.collideWorldBounds', true);
+        Enemie5.setAll('body.bounce.x', 1);
+        Enemie5.setAll('body.bounce.y', 1);
+        Enemie5.setAll('body.minBounceVelocity', 0);
+
+// Enemies 6
+        Enemie6.setAll('body.bounce.x', 1);
+        Enemie6.setAll('body.bounce.y', 1);
+        Enemie6.setAll('body.minBounceVelocity', 0);
+        Enemie6.setAll('body.collideWorldBounds', true);
+
+
+
+        this.game.physics.enable(Enemie1,Enemie2,Enemie3,Enemie4,Enemie5,Enemie6,  Phaser.Physics.ARCADE);
+
+// Random Velocraptors
+
+
+        this.physics.arcade.enable(Enemie1, Enemie2, Enemie3, Enemie4 ,Enemie5, Enemie6);
 
 
     bullets = this.game.add.group();
@@ -36,13 +131,15 @@ Level2.prototype = {
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
-        Enemies.setAll('body.collideWorldBounds', true);
+
     sprite = this.game.add.sprite(400, 300, 'Player');
     sprite.anchor.set(0.5);
 
     this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
 
     sprite.body.allowRotation = false;
+        explosions = this.game.add.group();
+        explosions.createMultiple(30, 'kaboom');
 
 },
 
@@ -53,8 +150,9 @@ Level2.prototype = {
 
 
     update: function() {
-        this.physics.arcade.collide(bullets, Enemies, this.collisionHandler, null, this);
+
     sprite.rotation = this.game.physics.arcade.angleToPointer(sprite);
+
 
     if (this.game.input.activePointer.isDown)
     {
@@ -74,12 +172,16 @@ Level2.prototype = {
             bullet.reset(sprite.x - 8, sprite.y - 8);
 
             this.game.physics.arcade.moveToPointer(bullet, 300);
+            this.music = this.game.add.audio('GunSound');
+            this.music.volume = 1;
+            this.music.loop = false;
+            this.music.play();
         }
 
     },
 
     collisionHandler: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
+
 
     },
 
