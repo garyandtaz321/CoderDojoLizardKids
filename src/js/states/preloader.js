@@ -44,8 +44,8 @@ Preloader.prototype = {
         this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
         this.game.load.spritesheet('tDevito', 'assets/devitorun.png', 32, 32);
-        this.game.load.spritesheet('walker', 'assets/walk.png')
-        this.game.load.spritesheet('player')
+        this.game.load.spritesheet('walker', 'assets/walk.png');
+        this.game.load.spritesheet('player','assets/idle.png');
       },
 
       create: function () {
