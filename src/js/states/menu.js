@@ -28,16 +28,16 @@ Menu.prototype = {
 
     selection = 1;
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
-      this.game.state.start("Game");
+      this.game.state.start('Boss');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 100, 'restartbuttsheet', function() {
-        this.game.state.start("Preloader");
+        this.game.state.start('Preloader');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 200, 'quitbuttsheet', function() {
 
     }, this, 2, 1, 2);
-    this.asset = this.add.button(0, 300, 'InsructButts', function() {
-      this.game.state.start("instruction");
+    this.asset = this.add.button(0, 300, 'InstructButts', function() {
+      this.game.state.start('instruction');
     }, this, 2, 1, 2);
     this.asset.scale.x = 1.5;
     this.asset.scale.y = 1.5;
@@ -46,7 +46,7 @@ Menu.prototype = {
 
     keyup = this.game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyup.onDown.add(function() {
-      console.log("KEY UP");
+      console.log('KEY UP');
       if (selection !== 1) {
         selection += 1
       }
@@ -57,7 +57,7 @@ Menu.prototype = {
     }, this);
     keydown = this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     keydown.onDown.add(function() {
-      console.log("KEY DOWN");
+      console.log('KEY DOWN');
       if (selection !== -1) {
         selection -= 1
       }
