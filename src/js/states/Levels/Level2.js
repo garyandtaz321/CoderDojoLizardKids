@@ -27,6 +27,7 @@ Level2.prototype = {
 
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
         Enemie2 = this.game.make.group();
         Enemie3 = this.game.make.group();
@@ -123,7 +124,8 @@ Level2.prototype = {
         this.physics.arcade.enable(Enemie1, Enemie2, Enemie3, Enemie4 ,Enemie5, Enemie6);
 
 
-    bullets = this.game.add.group();
+
+        bullets = this.game.add.group();
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
 
@@ -152,6 +154,12 @@ Level2.prototype = {
     update: function() {
 
     sprite.rotation = this.game.physics.arcade.angleToPointer(sprite);
+        this.physics.arcade.collide(bullets, Enemie1, this.collisionHandler, null, this);
+        this.physics.arcade.collide(bullets, Enemie2, this.collisionHandler2, null, this);
+        this.physics.arcade.collide(bullets, Enemie3, this.collisionHandler3, null, this);
+        this.physics.arcade.collide(bullets, Enemie4, this.collisionHandler4, null, this);
+        this.physics.arcade.collide(bullets, Enemie5, this.collisionHandler5, null, this);
+        this.physics.arcade.collide(bullets, Enemie6, this.collisionHandler6, null, this);
 
 
     if (this.game.input.activePointer.isDown)
@@ -181,9 +189,28 @@ Level2.prototype = {
     },
 
     collisionHandler: function  (obj1, obj2 ) {
-
+     Enemie1.destroy();
 
     },
+    collisionHandler2: function  (obj1, obj2 ) {
+        Enemie2.destroy();
 
+    },
+    collisionHandler3: function  (obj1, obj2 ) {
+        Enemie3.destroy();
+
+    },
+    collisionHandler4: function  (obj1, obj2 ) {
+        Enemie4.destroy();
+
+    },
+    collisionHandler5: function  (obj1, obj2 ) {
+        Enemie5.destroy();
+
+    },
+    collisionHandler6: function  (obj1, obj2 ) {
+        Enemie6.destroy();
+
+    },
 };
 
