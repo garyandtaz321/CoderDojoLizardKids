@@ -24,7 +24,7 @@ Boss.prototype = {
 
         sprite = this.add.sprite(567, 400, 'walker');
         health = this.add.sprite(0,0, 'hb');
-        var diminish = health.animations.add('diminish', [13,12], 5, true);
+        var diminish = health.animations.add('diminish', [1,2], 5, true);
         var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
         pWalk.play('pWalk');
         attack = this.add.sprite(20, 300,'attack');
@@ -109,11 +109,14 @@ Boss.prototype = {
         this.game.state.start("Intro8y");
     },
    collisionHandler2: function  (obj1, obj2 ) {
-       boss.tint = 0xff0000;
-       var diminish = health.animations.add('diminish', [13,12], 5, true);
+       var diminish = health.animations.add('diminish', [0,1], 5, true);
        diminish.play('diminish');
-       var damage = boss.animations.add('damage', [2,3], 5, true);
-       damage.play('damage')
+       var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
+       damage.play('damage');
+       this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
+       function endAnimation(){
+           boss.animations.stop(null, true);
+       }
    },
     collisionHandler3: function  (obj1, obj2 ) {
         boss.tint = 0xffffff;
@@ -121,6 +124,7 @@ Boss.prototype = {
     shutdown: function () {
         this.music.volume = 1;
         this.music.stop();
-    }
+    },
+
 
 };
