@@ -44,12 +44,13 @@ Preloader.prototype = {
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
         this.game.load.spritesheet('restartbuttsheet','assets/restartbutt.png', 488/2, 69);
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
-        this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
+        this.game.load.spritesheet('InstructButts','assets/instructbutt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
-        this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32)
+        this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32);
         this.game.load.spritesheet('walker','assets/walk.png', 32, 32);
         this.game.load.spritesheet('idle', 'assets/idle.png', 32, 32);
-        this.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);
+        this.game.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);
+        this.game.load.spritesheet('hb','assets/healthbar.png', 6565/13, 40);
       },
 
       create: function () {
