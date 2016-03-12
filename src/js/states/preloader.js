@@ -30,6 +30,7 @@ Preloader.prototype = {
         this.load.image('Cyborg' , 'assets/CyborgDevito.png');
         this.load.image('Devito' ,'assets/Deee.png' );
         this.load.image('bullet' ,'assets/bullet5.png' );
+        this.load.image('lazer','assets/lazer.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -48,6 +49,7 @@ Preloader.prototype = {
         this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32)
         this.game.load.spritesheet('walker','assets/walk.png', 32, 32);
         this.game.load.spritesheet('idle', 'assets/idle.png', 32, 32);
+        this.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);
       },
 
       create: function () {
