@@ -111,8 +111,9 @@ Boss.prototype = {
    collisionHandler2: function  (obj1, obj2 ) {
        boss.tint = 0xff0000;
        var diminish = health.animations.add('diminish', [13,12], 5, true);
-       diminish.play('diminish')
-       var
+       diminish.play('diminish');
+       var damage = boss.animations.add('damage', [2,3], 5, true);
+       damage.play('damage')
    },
     collisionHandler3: function  (obj1, obj2 ) {
         boss.tint = 0xffffff;
