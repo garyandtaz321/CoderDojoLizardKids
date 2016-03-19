@@ -8,11 +8,15 @@ var Enemie3;
 var Enemie4;
 var Enemie5;
 var Enemie6;
-
+var KILLS = 0;
 var sprite;
+var cursors;
+var Background;
+var Keys;
 var bullets;
 var explosions;
-var fireRate = 100;
+var explosion;
+var fireRate = 50;
 var nextFire = 0;
 
 Level2.prototype = {
@@ -27,6 +31,7 @@ Level2.prototype = {
 
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        Background = this.add.sprite(0, 0, 'BK2');
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
         Enemie2 = this.game.make.group();
@@ -34,49 +39,50 @@ Level2.prototype = {
         Enemie4 = this.game.make.group();
         Enemie5 = this.game.make.group();
         Enemie6 = this.game.make.group();
-        for (var i = 0; i < 2; i++)
+        cursors = this.input.keyboard.createCursorKeys();
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie1.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie1.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie2.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie2.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie3.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie3.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie4.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie4.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie5.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie5.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
             s.body.velocity.y = this.game.rnd.integerInRange(-123, 345);
         }
-        for (var i = 0; i < 2; i++)
+        for (var i = 0; i < 1; i++)
         {
-            var s = Enemie6.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
+            var s = Enemie6.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(s, Phaser.Physics.ARCADE);
             s.body.velocity.x = this.game.rnd.integerInRange(-300, 234);
@@ -129,15 +135,17 @@ Level2.prototype = {
     bullets.enableBody = true;
     bullets.physicsBodyType = Phaser.Physics.ARCADE;
 
-    bullets.createMultiple(50, 'bullet');
+    bullets.createMultiple(2000, 'bullet');
     bullets.setAll('checkWorldBounds', true);
     bullets.setAll('outOfBoundsKill', true);
 
 
     sprite = this.game.add.sprite(400, 300, 'Player');
-    sprite.anchor.set(0.5);
+
+
 
     this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
+
 
     sprite.body.allowRotation = false;
         explosions = this.game.add.group();
@@ -152,18 +160,69 @@ Level2.prototype = {
 
 
     update: function() {
+        sprite.body.velocity.x = 0;
+        sprite.body.velocity.y = 0;
 
-    sprite.rotation = this.game.physics.arcade.angleToPointer(sprite);
+        if (cursors.up.isDown) {
+            sprite.body.velocity.y = -200;
+            sprite.body.velocity.y = -200;
+
+        }
+
+
+        if (cursors.left.isDown) {
+
+            sprite.body.velocity.x = -200;
+
+
+        }
+        else if (cursors.right.isDown) {
+
+            sprite.body.velocity.x = 200;
+        }
+
+        else if (cursors.down.isDown)
+        {
+            sprite.body.velocity.y = 200;
+            sprite.body.velocity.y = 200;
+
+        }
+        else {
+            sprite.body.acceleration.set(0);
+        }
+
+        console.log(KILLS)
+if (KILLS == 6)
+{
+
+    this.game.state.start("Level3");
+
+
+}else{
+
+
+
+
+}
+
         this.physics.arcade.collide(bullets, Enemie1, this.collisionHandler, null, this);
         this.physics.arcade.collide(bullets, Enemie2, this.collisionHandler2, null, this);
         this.physics.arcade.collide(bullets, Enemie3, this.collisionHandler3, null, this);
         this.physics.arcade.collide(bullets, Enemie4, this.collisionHandler4, null, this);
         this.physics.arcade.collide(bullets, Enemie5, this.collisionHandler5, null, this);
         this.physics.arcade.collide(bullets, Enemie6, this.collisionHandler6, null, this);
+        this.physics.arcade.collide(sprite, Enemie1, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, Enemie2, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, Enemie3, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, Enemie4, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, Enemie5, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, Enemie6, this.collisionHandler7, null, this);
+
 
 
     if (this.game.input.activePointer.isDown)
     {
+
         this.fire();
     }
 
@@ -177,7 +236,7 @@ Level2.prototype = {
 
             var bullet = bullets.getFirstDead();
 
-            bullet.reset(sprite.x - 8, sprite.y - 8);
+            bullet.reset(sprite.x , sprite.y );
 
             this.game.physics.arcade.moveToPointer(bullet, 300);
             this.music = this.game.add.audio('GunSound');
@@ -191,26 +250,47 @@ Level2.prototype = {
     collisionHandler: function  (obj1, obj2 ) {
      Enemie1.destroy();
 
+        ++KILLS;
+
     },
     collisionHandler2: function  (obj1, obj2 ) {
         Enemie2.destroy();
 
+        ++KILLS;
     },
     collisionHandler3: function  (obj1, obj2 ) {
         Enemie3.destroy();
 
+        ++KILLS;
     },
     collisionHandler4: function  (obj1, obj2 ) {
         Enemie4.destroy();
 
+        ++KILLS;
     },
     collisionHandler5: function  (obj1, obj2 ) {
         Enemie5.destroy();
 
+        ++KILLS;
     },
     collisionHandler6: function  (obj1, obj2 ) {
         Enemie6.destroy();
 
+        ++KILLS;
     },
+    collisionHandler7: function  (obj1, obj2 ) {
+        this.game.state.start("Intro8y");
+    },
+
+
+    render: function()
+    {
+
+        this.game.debug.text("Total kills: " + KILLS, 32, 32);
+
+
+    },
+
+
 };
 

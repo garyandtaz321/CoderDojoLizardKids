@@ -22,7 +22,7 @@ Preloader.prototype = {
         this.load.image('menu0','assets/startbutt.png');
         this.load.image('menu1','assets/restartbutt.png');
         this.load.image('menu2','assets/quitbutt.png');
-        this.load.image('ZAMBIE','assets/zombie_single.png');
+        this.load.image('ZAMBIE','assets/devito.png');
         this.load.image('Player','assets/sausage.png');
         this.load.image('title','assets/sausagefingerstitle.png');
         this.load.image('titlebk','assets/shreddedbeef.png');
@@ -31,6 +31,10 @@ Preloader.prototype = {
         this.load.image('Devito' ,'assets/Deee.png' );
         this.load.image('bullet' ,'assets/bullet5.png' );
         this.load.image('lazer','assets/lazer.png');
+        this.load.image('BK1','assets/firstbk.png');
+        this.load.image('BK2','assets/secondbk.png');
+        this.load.image('BK3','assets/thirdbk.png');
+        this.load.image('BK4','assets/fourthbk.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -39,14 +43,16 @@ Preloader.prototype = {
         this.load.audio("Laugh" ,"assets/Laugh.mp3");
         this.load.audio('WinSong', 'assets/sunny.mp3');
         this.load.audio('tdBattle','assets/EnmityOfTheDarkLord.mp3');
+        this.load.audio('GunSound','assets/GunSound.mp3');
+
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
         this.game.load.spritesheet('restartbuttsheet','assets/restartbutt.png', 488/2, 69);
         this.game.load.spritesheet('quitbuttsheet','assets/quitbutt.png', 392/2, 54);
-        this.game.load.spritesheet('InsructButts','assets/instructButt.png', 500/2, 81);
+        this.game.load.spritesheet('InsructButts','assets/instructbutt.png', 500/2, 81);
         this.game.load.spritesheet('BasructButts','assets/backbuttsheet.png', 250/2, 138);
-        this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32)
+        this.game.load.spritesheet('tDevito','assets/devitorun.png', 32, 32);
         this.game.load.spritesheet('walker','assets/walk.png', 32, 32);
         this.game.load.spritesheet('idle', 'assets/idle.png', 32, 32);
         this.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);

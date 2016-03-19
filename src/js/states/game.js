@@ -16,7 +16,7 @@ var group;
 var end;
 this.bmd = null;
 var cursors;
-
+var Bakground;
 var Keys;
 var right;
 var left;
@@ -25,7 +25,7 @@ module.exports = Game;
 Game.prototype = {
 
     create: function () {
-
+        Bakground = this.add.sprite(0, 0, 'BK1');
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
         for (var i = 0; i < 0; i++)

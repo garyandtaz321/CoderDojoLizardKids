@@ -104,8 +104,8 @@ Boss.prototype = {
     collisionHandler: function  (obj1, obj2 ) {
         this.game.state.start("Intro8y");
     },
-   // collisionHandler2: function  (obj1, obj2 ) {
-        //this.game.state.start("Intro8y");
+    // collisionHandler2: function  (obj1, obj2 ) {
+    //this.game.state.start("Intro8y");
 
     //},
     shutdown: function () {
