@@ -31,6 +31,7 @@ Preloader.prototype = {
         this.load.image('Devito' ,'assets/Deee.png' );
         this.load.image('bullet' ,'assets/bullet5.png' );
         this.load.image('lazer','assets/lazer.png');
+        this.load.image('sweat', 'assets/sweat.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -39,6 +40,7 @@ Preloader.prototype = {
         this.load.audio("Laugh" ,"assets/Laugh.mp3");
         this.load.audio('WinSong', 'assets/sunny.mp3');
         this.load.audio('tdBattle','assets/EnmityOfTheDarkLord.mp3');
+        this.load.audio('winSong', 'assets/sunny.mp3');
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
