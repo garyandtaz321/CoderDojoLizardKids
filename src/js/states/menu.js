@@ -23,10 +23,10 @@ Menu.prototype = {
     // Show background
     this.asset = this.add.sprite(0, 0, 'titlebk');
 
-    // Show title
-    this.asset = this.add.sprite(400, 0, 'title');
-
     selection = 1;
+    this.asset = this.add.button(500, 0, 'title', function() {
+      this.game.state.start('EE');
+    }, this, 2, 1, 2);
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
       this.game.state.start('Boss');
     }, this, 2, 1, 2);
@@ -51,7 +51,7 @@ Menu.prototype = {
         selection += 1
       }
       else {
-        // Do nothing :)
+        // Do nothing :)music
       }
       console.log(selection);
     }, this);

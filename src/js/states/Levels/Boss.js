@@ -29,9 +29,9 @@ Boss.prototype = {
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.stage.backgroundColor = '#8B0000';
-        //back = this.add.sprite(400, 300, 'bossBack');
+        //back = this.add.sprite(400, 300, 'bb');
         //var spook = back.animations.add('spook', [0,1,2,3,4,5,6,7], 30, true);
-        //spook.play('spook')orb;
+        //spook.play('spook');
 
 
 
@@ -161,7 +161,7 @@ Boss.prototype = {
         boss.scale.x = 4;
         boss.scale.y = 4;
         lazer = this.game.make.group();
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 8; i++)
         {
             var s = lazer.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'tDevito');
 
@@ -215,29 +215,18 @@ Boss.prototype = {
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
-
         }
-        else {
-            sprite.body.acceleration.set(0);
-        }
-
         if (cursors.left.isDown) {
-
             sprite.body.velocity.x = -200;
-
-
         }
-        else if (cursors.right.isDown) {
-
+        if (cursors.right.isDown) {
             sprite.body.velocity.x = 200;
         }
 
-        else if (cursors.down.isDown)
-        {
+        if (cursors.down.isDown) {
             sprite.body.velocity.y = 200;
-
         }
-        boss.rotation += 0.05;
+        boss.rotation += -0.05;
 
     },
     collisionHandler: function  (obj1, obj2 ) {
@@ -399,7 +388,7 @@ Boss.prototype = {
         }
     },
     collisionHandler14: function  (obj1, obj2 ) {
-        this.game.state.start("Win");
+        this.game.state.start("BossDie1");
     },
     shutdown: function () {
         this.music.volume = 1;
