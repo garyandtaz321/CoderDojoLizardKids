@@ -30,7 +30,7 @@ Intro8y.prototype = {
             this.asset.alpha -= 0.01;
         }
         if (this.asset.alpha < 0) {
-            this.game.state.start('Boss3');
+            this.game.state.start('Boss');
         }
     }
 };

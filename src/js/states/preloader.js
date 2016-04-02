@@ -27,8 +27,6 @@ Preloader.prototype = {
         this.load.image('title','assets/sausagefingerstitle.png');
         this.load.image('titlebk','assets/shreddedbeef.png');
         this.load.image('Winner','assets/WINNA.jpg');
-        this.load.image('Cyborg' , 'assets/CyborgDevito.png');
-        this.load.image('Devito' ,'assets/Deee.png' );
         this.load.image('bullet' ,'assets/bullet5.png' );
         this.load.image('lazer','assets/lazer.png');
         this.load.image('sweat', 'assets/sweat.png');
@@ -63,6 +61,8 @@ Preloader.prototype = {
         this.game.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);
         this.game.load.spritesheet('hb','assets/healthbar.png', 6565/13, 40);
         this.game.load.spritesheet('bb','assets/weeee.png', 14560/70, 200);
+        this.game.load.spritesheet('Devito' ,'assets/Deee.png',1280/2, 640);
+        this.game.load.spritesheet('Cyborg' ,'assets/CyborgDevito.png', 1336/2, 596);
       },
 
       create: function () {
