@@ -3,6 +3,7 @@ var Boss = function () {};
 module.exports = Boss;
 
 var sprite;
+var background;
 var boss;
 var lazer;
 var tween1;
@@ -33,8 +34,7 @@ Boss.prototype = {
         //var spook = back.animations.add('spook', [0,1,2,3,4,5,6,7], 30, true);
         //spook.play('spook');
 
-
-
+        background = this.add.sprite(0,0, 'space');
         sprite = this.add.sprite(567, 400, 'walker');
         health = this.add.sprite(0,0, 'hb');
         sweat = this.add.sprite(0,40, 'sweat');
@@ -179,11 +179,9 @@ Boss.prototype = {
         this.physics.enable(sprite , Phaser.Physics.ARCADE);
         this.physics.enable(boss , Phaser.Physics.ARCADE);
         this.physics.enable(attack, Phaser.Physics.ARCADE);
-
+        sprite.body.collideWorldBounds=true;
 
         cursors = this.input.keyboard.createCursorKeys();
-
-
 
         this.music = this.game.add.audio('tdBattle');
         this.music.volume = 1;

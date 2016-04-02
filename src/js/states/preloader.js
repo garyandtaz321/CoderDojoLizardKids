@@ -35,6 +35,7 @@ Preloader.prototype = {
         this.load.image('ps', 'assets/dansface.png');
         this.load.image('aps','assets/actualPS.png');
         this.load.image('lb', 'assets/BigBurst.png');
+        this.load.image('space', 'assets/background.jpg');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -47,6 +48,8 @@ Preloader.prototype = {
         this.load.audio('attackS','assets/Combat.mp3');
         this.load.audio('DBattle','assets/AnimusOfTheDarkLord.mp3');
         this.load.audio('CBattle','assets/MalevolenceOfTheDarkLord.mp3');
+        this.load.audio('LE','assets/LE.mp3');
+        this.load.audio('EES','assets/EESong.mp3');
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
