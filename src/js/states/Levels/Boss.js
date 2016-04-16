@@ -8,6 +8,7 @@ var lazer;
 var tween1;
 var back;
 var attack;
+var health;
 Boss.prototype = {
 
 
@@ -22,6 +23,8 @@ Boss.prototype = {
 
 
         sprite = this.add.sprite(567, 400, 'walker');
+        health = this.add.sprite(0,0, 'hb');
+        var diminish = health.animations.add('diminish', [1,2], 5, true);
         var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
         pWalk.play('pWalk');
         attack = this.add.sprite(20, 300,'attack');
@@ -29,6 +32,8 @@ Boss.prototype = {
         flash.play('flash');
         attack.scale.x = 1/2;
         attack.scale.y = 1/2;
+        attack.anchor.x = 0;
+        attack.anchor.y = 0;
 
         boss = this.add.sprite(400, 300,'tDevito');
         boss.scale.x = 4;
@@ -51,6 +56,7 @@ Boss.prototype = {
         walk.play('walk');
         this.physics.enable(sprite , Phaser.Physics.ARCADE);
         this.physics.enable(boss , Phaser.Physics.ARCADE);
+        this.physics.enable(attack, Phaser.Physics.ARCADE);
 
         cursors = this.input.keyboard.createCursorKeys();
 
@@ -74,7 +80,6 @@ Boss.prototype = {
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
-            sprite.body.velocity.y = -200;
 
         }
         else {
@@ -95,7 +100,6 @@ Boss.prototype = {
         else if (cursors.down.isDown)
         {
             sprite.body.velocity.y = 200;
-            sprite.body.velocity.y = 200;
 
         }
         boss.rotation += 0.05;
@@ -104,13 +108,23 @@ Boss.prototype = {
     collisionHandler: function  (obj1, obj2 ) {
         this.game.state.start("Intro8y");
     },
-   // collisionHandler2: function  (obj1, obj2 ) {
-        //this.game.state.start("Intro8y");
-
-    //},
+   collisionHandler2: function  (obj1, obj2 ) {
+       var diminish = health.animations.add('diminish', [0,1], 5, true);
+       diminish.play('diminish');
+       var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
+       damage.play('damage');
+       this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
+       function endAnimation(){
+           boss.animations.stop(null, true);
+       }
+   },
+    collisionHandler3: function  (obj1, obj2 ) {
+        boss.tint = 0xffffff;
+    },
     shutdown: function () {
         this.music.volume = 1;
         this.music.stop();
-    }
+    },
+
 
 };

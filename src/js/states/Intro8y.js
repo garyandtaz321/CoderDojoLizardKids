@@ -7,7 +7,7 @@ Intro8y.prototype = {
 
 
     create: function () {
-        this.add.sprite(0, 0, 'end')
+        this.add.sprite(0, 0, 'end');
         this.asset = this.add.sprite(100, 60, 'Devito');
 
         this.asset.alpha = 0;
@@ -30,7 +30,7 @@ Intro8y.prototype = {
             this.asset.alpha -= 0.01;
         }
         if (this.asset.alpha < 0) {
-            this.game.state.start('Menu');
+            this.game.state.start('Boss3');
         }
     }
 };
