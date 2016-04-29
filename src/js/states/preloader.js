@@ -34,6 +34,11 @@ Preloader.prototype = {
         this.load.image('aps','assets/actualPS.png');
         this.load.image('lb', 'assets/BigBurst.png');
         this.load.image('space', 'assets/background.jpg');
+        this.load.image('SD','assets/SD.png');
+        this.load.image('stan','assets/Stan.png');
+        this.load.image('name','assets/DannyD.png');
+        this.load.image('punished','assets/Punished.png');
+        this.load.image('FN', 'assets/floweynuke.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -48,6 +53,11 @@ Preloader.prototype = {
         this.load.audio('CBattle','assets/MalevolenceOfTheDarkLord.mp3');
         this.load.audio('LE','assets/LE.mp3');
         this.load.audio('EES','assets/EESong.mp3');
+        this.load.audio('lazerN','assets/lazershoot.wav');
+        this.load.audio('hit1','assets/dannyhit1.wav');
+        this.load.audio('hit2','assets/dannyhit2.wav');
+        this.load.audio('hit3','assets/dannyhit3.wav');
+        this.load.audio('blaster','assets/blaster.mp3');
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',396/2, 81);
@@ -63,6 +73,8 @@ Preloader.prototype = {
         this.game.load.spritesheet('bb','assets/weeee.png', 14560/70, 200);
         this.game.load.spritesheet('Devito' ,'assets/Deee.png',1280/2, 640);
         this.game.load.spritesheet('Cyborg' ,'assets/CyborgDevito.png', 1336/2, 596);
+        this.game.load.spritesheet('Titles','assets/Titles.png', 1200/3, 100);
+        this.game.load.spritesheet('PA','assets/playerblaster.png',2016/21, 96);
       },
 
       create: function () {
