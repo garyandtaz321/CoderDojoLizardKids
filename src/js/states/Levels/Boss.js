@@ -28,7 +28,7 @@ var KeyState = require("../../common/keystate/Keystate");
 //var emitter;
 var pAttack;
 Boss.prototype = {
-    keystate: null,
+   keystate: null,
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.stage.backgroundColor = '#8B0000';
@@ -262,7 +262,7 @@ Boss.prototype = {
        diminish.play('diminish');
        var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
        damage.play('damage');
-       var blast = pAttack.animations.add('blast', [0,1,2,3,4], 10, true);
+       var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
        blast.play('blast');
        this.sound.play('blaster');
        this.sound.play('hit1');
