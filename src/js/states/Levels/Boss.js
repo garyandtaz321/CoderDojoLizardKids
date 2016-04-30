@@ -6,8 +6,6 @@ var sprite;
 var background;
 var boss;
 var lazer;
-var tween1;
-var back;
 var attack;
 var attack2;
 var attack3;
@@ -23,13 +21,19 @@ var attack12;
 var attack13;
 var health;
 var sweat;
+var name;
+
+//Keystate import
+var KeyState = require("../../common/keystate/Keystate");
+//var emitter;
+var pAttack;
 Boss.prototype = {
-
-
-
+    keystate: null,
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.stage.backgroundColor = '#8B0000';
+        this.keystate = new KeyState(this.game);
+        console.log(this.keystate);
         //back = this.add.sprite(400, 300, 'bb');
         //var spook = back.animations.add('spook', [0,1,2,3,4,5,6,7], 30, true);
         //spook.play('spook');
@@ -38,16 +42,31 @@ Boss.prototype = {
         sprite = this.add.sprite(567, 400, 'walker');
         health = this.add.sprite(0,0, 'hb');
         sweat = this.add.sprite(0,40, 'sweat');
+        //SD = this.add.sprite(0,0, 'SD');
         var diminish = health.animations.add('diminish', [1,2], 5, true);
         var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
         pWalk.play('pWalk');
         attack = this.add.sprite(20, 300,'attack');
         var flash = attack.animations.add('flash', [0,1], 2, true);
         flash.play('flash');
+        pAttack = this.add.sprite(0,300, 'PA');
+        pAttack.scale.x = 10;
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4], 10, true);
         attack.scale.x = 1/2;
         attack.scale.y = 1/2;
         attack.anchor.x = 0;
         attack.anchor.y = 0;
+        name = this.add.sprite(200, 250, 'stan');
+        /*emitter = this.game.add.emitter(3500, 1000, 200);
+        emitter.makeParticles('FN');
+        emitter.start(false, 7500, 200);
+        emitter.scale.x = 1/8;
+        emitter.scale.y = 1/8;*/
+        this.game.time.events.add(Phaser.Timer.SECOND * 4, fadeTitle, this);
+         function fadeTitle(){
+         this.game.add.tween(name).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+         console.log('faded');
+         }
         this.game.time.events.add(Phaser.Timer.SECOND * 10, addAttack2, this);
         function addAttack2(){
             attack2 = this.add.sprite(20, 300,'attack');
@@ -195,9 +214,11 @@ Boss.prototype = {
     update: function () {
         this.physics.arcade.collide(sprite, attack, this.collisionHandler2, null, this);
 
+        this.keystate.update();
+
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-        this.physics.arcade.collide(sprite, lazer, this.collisionHandler, null, this);
+        //this.physics.arcade.collide(sprite, lazer, this.collisionHandler, null, this);
         this.physics.arcade.collide(sprite, attack2, this.collisionHandler3, null, this);
         this.physics.arcade.collide(sprite, attack3, this.collisionHandler4, null, this);
         this.physics.arcade.collide(sprite, attack4, this.collisionHandler5, null, this);
@@ -227,17 +248,28 @@ Boss.prototype = {
         boss.rotation += -0.05;
 
     },
+    /*render: function() {
+        this.game.debug.body(lazer);
+        this.game.debug.body(sprite);
+
+
+},*/
     collisionHandler: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
+      this.game.state.start('Intro8y');
     },
    collisionHandler2: function  (obj1, obj2 ) {
        var diminish = health.animations.add('diminish', [0,1], 5, true);
        diminish.play('diminish');
        var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
        damage.play('damage');
+       var blast = pAttack.animations.add('blast', [0,1,2,3,4], 10, true);
+       blast.play('blast');
+       this.sound.play('blaster');
+       this.sound.play('hit1');
        this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
        function endAnimation(){
            boss.animations.stop(null, true);
+           pAttack.animations.stop(null, true);
            var walk = boss.animations.add('walk', [0,1], 30, true);
            walk.play('walk');
        }
@@ -248,9 +280,15 @@ Boss.prototype = {
         attack2.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -261,9 +299,15 @@ Boss.prototype = {
         attack3.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -274,9 +318,15 @@ Boss.prototype = {
         attack4.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -287,9 +337,15 @@ Boss.prototype = {
         attack5.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -300,9 +356,15 @@ Boss.prototype = {
         attack6.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -313,9 +375,15 @@ Boss.prototype = {
         attack7.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -326,9 +394,15 @@ Boss.prototype = {
         attack8.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -339,9 +413,15 @@ Boss.prototype = {
         attack9.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -352,9 +432,15 @@ Boss.prototype = {
         attack10.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -365,9 +451,15 @@ Boss.prototype = {
         attack11.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
@@ -378,15 +470,21 @@ Boss.prototype = {
         attack12.body.velocity.x = 200;
         var damage = boss.animations.add('damage', [0,1,2,3], 30, true);
         damage.play('damage');
+        this.sound.play('hit1');
+        var blast = pAttack.animations.add('blast', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 10, true);
+        blast.play('blast');
+        this.sound.play('blaster');
+        this.sound.play('hit1');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, endAnimation, this);
-        function endAnimation() {
+        function endAnimation(){
             boss.animations.stop(null, true);
+            pAttack.animations.stop(null, true);
             var walk = boss.animations.add('walk', [0,1], 30, true);
             walk.play('walk');
         }
     },
     collisionHandler14: function  (obj1, obj2 ) {
-        this.game.state.start("BossDie1");
+        this.game.state.start('BossDie1');
     },
     shutdown: function () {
         this.music.volume = 1;
