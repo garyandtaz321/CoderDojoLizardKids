@@ -28,7 +28,7 @@ Menu.prototype = {
 
     selection = 1;
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
-      this.game.state.start('Game');
+      this.game.state.start('Level4');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 100, 'restartbuttsheet', function() {
         this.game.state.start('Preloader');

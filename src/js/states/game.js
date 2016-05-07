@@ -20,12 +20,15 @@ var Bakground;
 var Keys;
 var right;
 var left;
+var Health
 module.exports = Game;
 
 Game.prototype = {
 
     create: function () {
+
         Bakground = this.add.sprite(0, 0, 'BK1');
+
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
         for (var i = 0; i < 0; i++)
@@ -40,7 +43,9 @@ Game.prototype = {
 
 
         this.physics.startSystem(Phaser.Physics.ARCADE);
-        sprite = this.add.sprite(567, 400, 'Player');
+        sprite = this.add.sprite(1632, 1632, 'walker');
+        var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
+        pWalk.play('pWalk');
         // Spawning
 
         end = this.add.sprite(800, 0, 'Endofgame')

@@ -13,12 +13,25 @@ var livingEnemies = [];
 var sprite;
 var Goal;
 var Background;
+var Health;
+var L = 0;
+var diminish;
+var diminish1;
+var diminish2;
+var  enemyBullet
 
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
 
 Level4.prototype = {
 
     create: function () {
         Background = this.add.sprite(0, 0, 'BK4');
+        Health = this.game.add.sprite(100, 100, 'liverroni');
+
+
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
@@ -52,11 +65,14 @@ Level4.prototype = {
             enemyBullets.setAll('outOfBoundsKill', true);
             enemyBullets.setAll('checkWorldBounds', true);
 
-            sprite = this.game.add.sprite(400, 300, 'Player');
+        sprite = this.add.sprite(1632, 1632, 'walker');
+        var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
+        pWalk.play('pWalk');
+
 
 
             this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
-
+        sprite.body.collideWorldBounds=true;
 
             sprite.body.allowRotation = false;
         this.game.time.events.add(Phaser.Timer.SECOND * 10, this.spawnGoal, this);
@@ -66,7 +82,24 @@ Level4.prototype = {
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
         this.physics.arcade.collide(sprite, Goal, this.goalHandler, null, this);
-        this.physics.arcade.overlap(sprite,enemyBullets, this.KillHandler, null, this);
+
+        HealthCollisions.collided = this.physics.arcade.collide(sprite,enemyBullets, this.KillHandler, null, this);
+
+        if (!HealthCollisions.collided) {
+            HealthCollisions.locked = false;
+        }
+
+
+        if (L == 1){
+            Health.frame=1;
+        } else if(L == 2){
+            Health.frame=2;
+        }else if(L == 3){
+    Health.frame=3;
+            this.game.state.start("Intro8y");
+            this.game.time.now + 1000
+
+}
         if (this.game.time.now > firingTimer) {
             this.enemyFires();
         }
@@ -127,17 +160,21 @@ Level4.prototype = {
 
     },
     collisionHandler7: function (obj1, obj2) {
-        this.game.state.start("Intro8y");
+
     },
 
 
     KillHandler: function(obj1, obj2) {
-        this.game.state.start("Intro8y");
+        if (HealthCollisions.locked) {
+            return;
+        }
 
-
+        L++;
+        console.log(L);
+        HealthCollisions.locked = true;
     },
     goalHandler: function(obj1, obj2) {
-        this.game.state.start("Win");
+        this.game.state.start("Level5");
 
 
     },
@@ -145,6 +182,7 @@ Level4.prototype = {
     spawnGoal: function()
     {
         Goal =  this.add.sprite(0, 0, 'goal')
+
         this.game.physics.enable(Goal, Phaser.Physics.ARCADE);
 
     },
@@ -156,3 +194,4 @@ Level4.prototype = {
 
     },
 };
+

@@ -79,11 +79,14 @@ Level3.prototype = {
         enemyBullets.setAll('outOfBoundsKill', true);
         enemyBullets.setAll('checkWorldBounds', true);
 
-        sprite = this.game.add.sprite(400, 300, 'Player');
+        sprite = this.add.sprite(1632, 1632, 'walker');
+        var pWalk = sprite.animations.add('pWalk', [0,1], 10, true);
+        pWalk.play('pWalk');
+
 
 
         this.game.physics.enable(sprite, Phaser.Physics.ARCADE);
-
+        sprite.body.collideWorldBounds=true;
 
         sprite.body.allowRotation = false;
         explosions = this.game.add.group();
