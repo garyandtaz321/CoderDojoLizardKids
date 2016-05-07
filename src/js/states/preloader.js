@@ -31,8 +31,6 @@ Preloader.prototype = {
         this.load.image('title','assets/sausagefingerstitle.png');
         this.load.image('titlebk','assets/shreddedbeef.png');
         this.load.image('Winner','assets/WINNA.jpg');
-        this.load.image('Cyborg' , 'assets/CyborgDevito.png');
-        this.load.image('Devito' ,'assets/Deee.png' );
         this.load.image('bullet' ,'assets/bullet5.png' );
         this.load.image('lazer','assets/lazer.png');
         this.load.image('sweat', 'assets/sweat.png');
@@ -42,6 +40,12 @@ Preloader.prototype = {
         this.load.image('space', 'assets/background.jpg');
         this.load.image('DungeonCrawl_ProjectUtumnoTileset', 'assets/DungeonCrawl_ProjectUtumnoTileset.png');
         // Audio0
+        this.load.image('SD','assets/SD.png');
+        this.load.image('stan','assets/Stan.png');
+        this.load.image('name','assets/DannyD.png');
+        this.load.image('punished','assets/Punished.png');
+        this.load.image('FN', 'assets/floweynuke.png');
+        // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
         this.load.audio("titlesong","assets/trolltoll.wav");
@@ -55,6 +59,11 @@ Preloader.prototype = {
         this.load.audio('CBattle','assets/MalevolenceOfTheDarkLord.mp3');
         this.load.audio('LE','assets/LE.mp3');
         this.load.audio('EES','assets/EESong.mp3');
+        this.load.audio('lazerN','assets/lazershoot.wav');
+        this.load.audio('hit1','assets/dannyhit1.wav');
+        this.load.audio('hit2','assets/dannyhit2.wav');
+        this.load.audio('hit3','assets/dannyhit3.wav');
+        this.load.audio('blaster','assets/blaster.mp3');
         this.load.audio('GunSound','assets/GunSound.mp3');
 
         // Spritesheets
@@ -76,6 +85,10 @@ Preloader.prototype = {
         // Tilemaps
 
         this.game.load.tilemap('map', 'assets/Worknow.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.spritesheet('Devito' ,'assets/Deee.png',1280/2, 640);
+        this.game.load.spritesheet('Cyborg' ,'assets/CyborgDevito.png', 1336/2, 596);
+        this.game.load.spritesheet('Titles','assets/Titles.png', 1200/3, 100);
+        this.game.load.spritesheet('PA','assets/playerblaster.png',2016/21, 96);
       },
 
       create: function () {
