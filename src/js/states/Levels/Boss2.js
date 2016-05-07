@@ -64,7 +64,7 @@ var health;
 var sweat;
 var name;
 //Danny import
-var Danny = require("../../common/Danny");
+//var Danny = require("../../common/Danny");
 Boss2.prototype = {
     Danny: null,
     create: function () {
@@ -73,8 +73,8 @@ Boss2.prototype = {
         //back = this.add.sprite(400, 300, 'bb');
         //var spook = back.animations.add('spook', [0,1,2,3,4,5,6,7], 30, true);
         //spook.play('spook');
-        this.Danny = new Danny(this.game);
-        console.log(this.Danny);
+        //this.Danny = new Danny(this.game);
+        //console.log(this.Danny);
 
         background = this.add.sprite(0,0, 'space');
         boss = this.add.sprite(100,0,'Devito');
@@ -206,7 +206,7 @@ Boss2.prototype = {
             attack13.scale.x = 1/2;
             attack13.scale.y = 1/2;
         }
-        /*for(var i= 0; i < 500; i=i+27) {
+        for(var i= 0; i < 500; i=i+27) {
             this.game.time.events.add(Phaser.Timer.SECOND * (1+i), lazerBarrage, this);
             function lazerBarrage() {
                 lazer = this.add.sprite(245, 225, 'lazer');
@@ -458,7 +458,7 @@ Boss2.prototype = {
                 console.log('lazer10z');
                 this.sound.play('lazerN');
             }
-        }*/
+        }
 
         bdevito = this.game.make.group();
         for (var i = 0; i < 5; i++)
@@ -494,7 +494,7 @@ Boss2.prototype = {
 
     update: function () {
         this.physics.arcade.collide(sprite, attack, this.collisionHandler2, null, this);
-        this.Danny.update();
+        //this.Danny.update();
 
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
