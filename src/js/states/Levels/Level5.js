@@ -7,15 +7,22 @@ var map;
 var tileset;
 var layer;
 var sprite;
-var cursors;
 var goal;
 var goal1;
+//Keystate import
+var KeyState = require("../../common/keystate/Keystate");
+var Health = require("../../common/keystate/Health");
 Level5.prototype = {
-
+    keystate: null,
+    health: null,
     create: function () {
         this.game.physics.startSystem(Phaser.Physics.P2JS);
         this.game.physics.p2.setImpactEvents(true);
+
         cursors = this.input.keyboard.createCursorKeys();
+        this.keystate = new KeyState(this.game);
+        this.health = new Health(this.game);
+
 this.game.world.setBounds(0 ,0 , 3300, 3300);
         map = this.game.add.tilemap('map');
         map.addTilesetImage('DungeonCrawl_ProjectUtumnoTileset');
@@ -37,12 +44,12 @@ this.game.world.setBounds(0 ,0 , 3300, 3300);
         this.game.time.events.add(Phaser.Timer.SECOND * 25, this.Death, this);
         this.game.physics.enable(goal, Phaser.Physics.P2JS);
         this.game.physics.enable(goal1, Phaser.Physics.P2JS);
-
     },
 
     update: function () {
         goal.body.onBeginContact.add(this.Win , this);
         goal1.body.onBeginContact.add(this.Win, this);
+        this.keystate.update();
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
         if (cursors.up.isDown) {

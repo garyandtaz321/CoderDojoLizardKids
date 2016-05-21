@@ -7,10 +7,11 @@ var Enemie2;
 var Enemie3;
 var Enemie4;
 var Enemie5;
+var Health;
+var L = 0;
 var Enemie6;
 var KILLS = 0;
 var sprite;
-var cursors;
 var Background;
 var Keys;
 var bullets;
@@ -18,10 +19,16 @@ var explosions;
 var explosion;
 var fireRate = 50;
 var nextFire = 0;
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
+//Keystate import
+var KeyState = require("../../common/keystate/Keystate");
 
 Level2.prototype = {
 
-
+    keystate: null,
 
     create: function() {
 
@@ -32,6 +39,7 @@ Level2.prototype = {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Background = this.add.sprite(0, 0, 'BK2');
+        Health = this.game.add.sprite(100, 100, 'liverroni');
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
         Enemie2 = this.game.make.group();
@@ -40,6 +48,7 @@ Level2.prototype = {
         Enemie5 = this.game.make.group();
         Enemie6 = this.game.make.group();
         cursors = this.input.keyboard.createCursorKeys();
+        this.keystate = new KeyState(this.game);
         for (var i = 0; i < 1; i++)
         {
             var s = Enemie1.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
@@ -164,7 +173,8 @@ Level2.prototype = {
     update: function() {
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-
+        HealthCollisions.collided = this.physics.arcade.collide(sprite,Enemie1 || Enemie2 || Enemie3 ||Enemie4 ||Enemie5 || Enemie6, this.collisionHandler7, null, this);
+        this.keystate.update();
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
             sprite.body.velocity.y = -200;
@@ -281,7 +291,14 @@ if (KILLS == 6)
         ++KILLS;
     },
     collisionHandler7: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
+        if (HealthCollisions.locked) {
+            return;
+        }
+
+        L++;
+        console.log(L);
+        console.log("IMPACT");
+        HealthCollisions.locked = true;
     },
 
 

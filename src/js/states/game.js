@@ -9,6 +9,8 @@ var Enemies;
 var Enemies1;
 var points;
 var tween1;
+
+var L = 0;
 var Goal;
 var tween2;
 var tweenB;
@@ -21,6 +23,10 @@ var Keys;
 var right;
 var left;
 var Health
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
 module.exports = Game;
 
 Game.prototype = {
@@ -28,7 +34,7 @@ Game.prototype = {
     create: function () {
 
         Bakground = this.add.sprite(0, 0, 'BK1');
-
+        Health = this.game.add.sprite(100, 100, 'liverroni');
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
         for (var i = 0; i < 0; i++)

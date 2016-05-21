@@ -4,7 +4,6 @@ var Level4 = function () {
 
 module.exports = Level4;
 var Enemie1;
-var cursors;
 var enemyBullets;
 var fireRate = 50;
 var nextFire = 0;
@@ -18,19 +17,24 @@ var L = 0;
 var diminish;
 var diminish1;
 var diminish2;
-var  enemyBullet
-
+var  enemyBullet;
+//Keystate import
+var KeyState = require("../../common/keystate/Keystate");
+var Health = require("../../common/keystate/Health");
 var HealthCollisions = {
     collided: false,
     locked: false
 };
 
 Level4.prototype = {
-
+    keystate: null,
+    health: null,
     create: function () {
         Background = this.add.sprite(0, 0, 'BK4');
-        Health = this.game.add.sprite(100, 100, 'liverroni');
-
+        this.health = new Health(this.game);
+        this.keystate = new KeyState(this.game);
+        this.health = new Health(this.game)
+        console.log(this.keystate);
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -76,6 +80,8 @@ Level4.prototype = {
 
             sprite.body.allowRotation = false;
         this.game.time.events.add(Phaser.Timer.SECOND * 10, this.spawnGoal, this);
+        this.health.create();
+
 
     },
     update: function () {
@@ -83,23 +89,12 @@ Level4.prototype = {
         sprite.body.velocity.y = 0;
         this.physics.arcade.collide(sprite, Goal, this.goalHandler, null, this);
 
-        HealthCollisions.collided = this.physics.arcade.collide(sprite,enemyBullets, this.KillHandler, null, this);
-
-        if (!HealthCollisions.collided) {
-            HealthCollisions.locked = false;
-        }
+        this.physics.arcade.collide(sprite,enemyBullets, this.KillHandler, null, this);
 
 
-        if (L == 1){
-            Health.frame=1;
-        } else if(L == 2){
-            Health.frame=2;
-        }else if(L == 3){
-    Health.frame=3;
-            this.game.state.start("Intro8y");
-            this.game.time.now + 1000
 
-}
+
+
         if (this.game.time.now > firingTimer) {
             this.enemyFires();
         }
@@ -165,13 +160,10 @@ Level4.prototype = {
 
 
     KillHandler: function(obj1, obj2) {
-        if (HealthCollisions.locked) {
-            return;
-        }
 
-        L++;
-        console.log(L);
-        HealthCollisions.locked = true;
+
+        this.health.update();
+
     },
     goalHandler: function(obj1, obj2) {
         this.game.state.start("Level5");

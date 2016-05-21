@@ -12,7 +12,8 @@ var Enemie6;
 
 var KILLS = 0;
 var sprite;
-var cursors;
+var Health;
+var L = 0;
 var enemyBullets;
 var Keys;
 var Background;
@@ -23,13 +24,19 @@ var fireRate = 50;
 var nextFire = 0;
 var firingTimer = 0;
 var livingEnemies = [];
-
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
+//Keystate import
+var KeyState = require("../../common/keystate/Keystate");
 Level3.prototype = {
-
+    keystate: null,
     create: function () {
         Background = this.add.sprite(0, 0, 'BK3');
-
-
+        Health = this.game.add.sprite(100, 100, 'liverroni');
+        this.keystate = new KeyState(this.game);
+        console.log(this.keystate);
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -98,6 +105,23 @@ Level3.prototype = {
     update: function () {
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
+        this.keystate.update();
+
+        HealthCollisions.collided = this.physics.arcade.collide(sprite,enemyBullets, this.KillHandlers, null, this);
+
+        if (!HealthCollisions.collided) {
+            HealthCollisions.locked = false;
+        }
+        if (L == 1){
+            Health.frame=1;
+        } else if(L == 2){
+            Health.frame=2;
+        }else if(L == 3){
+            Health.frame=3;
+            this.game.state.start("Intro8y");
+            this.game.time.now + 1000
+
+        }
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
@@ -149,7 +173,7 @@ Level3.prototype = {
         this.physics.arcade.collide(sprite, Enemie4, this.collisionHandler7, null, this);
         this.physics.arcade.collide(sprite, Enemie5, this.collisionHandler7, null, this);
         this.physics.arcade.collide(sprite, Enemie6, this.collisionHandler7, null, this);
-        this.physics.arcade.collide(sprite, enemyBullets, this.collisionHandler7, null, this);
+        this.physics.arcade.collide(sprite, enemyBullets, this.KillHandlers, null, this);
         this.physics.arcade.overlap(bullets, Enemie1, this.KillHandler, null, this);
 
 
@@ -247,7 +271,14 @@ Level3.prototype = {
         ++KILLS;
     },
     collisionHandler7: function (obj1, obj2) {
-        this.game.state.start("Intro8y");
+        if (HealthCollisions.locked) {
+            return;
+        }
+
+        L++;
+        console.log(L);
+        HealthCollisions.locked = true;
+        console.log("IMPACTS");
     },
 
 
@@ -264,6 +295,16 @@ Level3.prototype = {
         this.game.debug.text("Total kills: " + KILLS, 32, 32);
 
 
+    },
+    KillHandlers: function(obj1, obj2) {
+        if (HealthCollisions.locked) {
+            return;
+        }
+
+        L++;
+        console.log(L);
+        HealthCollisions.locked = true;
+        console.log("IMPACT");
     },
 
 };
