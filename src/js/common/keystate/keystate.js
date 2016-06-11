@@ -12,6 +12,7 @@ Keystate.prototype = {
         // Check keys
         if (cursors.left.isDown){
             this._keys_down = this._keys_down + 1;
+            console.log('left');
         }
         if (cursors.up.isDown){
             this._keys_down++;
