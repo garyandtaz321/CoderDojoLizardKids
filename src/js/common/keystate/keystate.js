@@ -7,6 +7,7 @@ Keystate.prototype = {
     _fingers_lifted: false,
     _timer: null,
     _keys_down: 0,
+
     update() {
         this._keys_down = 0;
         // Check keys

@@ -12,6 +12,7 @@ Player.prototype.constructor = Player;
   Automatically called by World.update
  */
 Player.prototype.update = function() {
+
 };
 
 

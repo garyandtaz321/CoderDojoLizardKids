@@ -30,7 +30,15 @@ Intro8y.prototype = {
             this.asset.alpha -= 0.01;
         }
         if (this.asset.alpha < 0) {
-            this.game.state.start('Boss');
+            this.Button();
         }
-    }
+    },
+
+    Button: function(){
+
+        this.asset = this.add.button(400, 400, 'bba', function() {
+            this.game.state.start('Preloader');
+        }, this, 2, 1, 2);
+console.log("KAPPA");
+    },
 };

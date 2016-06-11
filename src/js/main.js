@@ -26,4 +26,10 @@ game.state.add('EE', require('./states/PS'));
 game.state.add('Resurrect', require('./states/Levels/Bossresurrect1.js'));
 game.state.add('Resurrect2', require('./states/Levels/Bossresurrect2.js'));
 game.state.add('Keystate', require('./common/keystate/Keystate.js'));
+game.state.add('Level3', require('./states/Levels/Level3'));
+game.state.add('Level4', require('./states/Levels/Level4'));
+game.state.add('Level5', require('./states/Levels/Level5'));
+
+
+
 game.state.start('Boot');
