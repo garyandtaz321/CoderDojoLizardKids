@@ -28,7 +28,7 @@ Menu.prototype = {
       this.game.state.start('EE');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
-      this.game.state.start('Boss');
+      this.game.state.start('Level2');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 100, 'restartbuttsheet', function() {
         this.game.state.start('Preloader');

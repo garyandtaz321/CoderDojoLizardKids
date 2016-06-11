@@ -22,11 +22,17 @@ var attack13;
 var health;
 var sweat;
 var name;
+var Health;
+var L = 0;
 
 //Keystate import
 var KeyState = require("../../common/keystate/Keystate");
 //var emitter;
 var pAttack;
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
 Boss.prototype = {
    keystate: null,
     create: function () {
@@ -57,6 +63,7 @@ Boss.prototype = {
         attack.anchor.x = 0;
         attack.anchor.y = 0;
         name = this.add.sprite(200, 250, 'stan');
+        Health = this.game.add.sprite(0, 582, 'liverroni');
         /*emitter = this.game.add.emitter(3500, 1000, 200);
         emitter.makeParticles('FN');
         emitter.start(false, 7500, 200);
@@ -218,7 +225,6 @@ Boss.prototype = {
 
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-        //this.physics.arcade.collide(sprite, lazer, this.collisionHandler, null, this);
         this.physics.arcade.collide(sprite, attack2, this.collisionHandler3, null, this);
         this.physics.arcade.collide(sprite, attack3, this.collisionHandler4, null, this);
         this.physics.arcade.collide(sprite, attack4, this.collisionHandler5, null, this);
@@ -231,6 +237,7 @@ Boss.prototype = {
         this.physics.arcade.collide(sprite, attack11, this.collisionHandler12, null, this);
         this.physics.arcade.collide(sprite, attack12, this.collisionHandler13, null, this);
         this.physics.arcade.collide(sprite, attack13, this.collisionHandler14, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite,lazer, this.KillHandler, null, this);
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
@@ -246,6 +253,21 @@ Boss.prototype = {
             sprite.body.velocity.y = 200;
         }
         boss.rotation += -0.05;
+        if (!HealthCollisions.collided) {
+            HealthCollisions.locked = false;
+        }
+
+
+        if (L == 1){
+            Health.frame=1;
+        } else if(L == 2){
+            Health.frame=2;
+        }else if(L == 3){
+            Health.frame=3;
+            this.game.state.start("Intro8y");
+            L=0;
+
+        }
 
     },
     /*render: function() {
@@ -254,8 +276,14 @@ Boss.prototype = {
 
 
 },*/
-    collisionHandler: function  (obj1, obj2 ) {
-      this.game.state.start('Intro8y');
+    KillHandler: function(obj1, obj2) {
+        if (HealthCollisions.locked) {
+            return;
+        }
+
+        L++;
+        console.log(L);
+        HealthCollisions.locked = true;
     },
    collisionHandler2: function  (obj1, obj2 ) {
        var diminish = health.animations.add('diminish', [0,1], 5, true);

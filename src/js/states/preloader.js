@@ -31,6 +31,8 @@ Preloader.prototype = {
         this.load.image('lazer','assets/lazer.png');
         this.load.image('sweat', 'assets/sweat.png');
         this.load.image('ps', 'assets/dansface.png');
+        this.load.image('salad','assets/potatoprojectile.png');
+        this.load.image('alex','assets/alexfriskoni.png');
         this.load.image('aps','assets/actualPS.png');
         this.load.image('lb', 'assets/BigBurst.png');
         this.load.image('space', 'assets/background.jpg');
@@ -71,10 +73,14 @@ Preloader.prototype = {
         this.game.load.spritesheet('attack','assets/attackbutt.png', 396/2, 81);
         this.game.load.spritesheet('hb','assets/healthbar.png', 6565/13, 40);
         this.game.load.spritesheet('bb','assets/weeee.png', 14560/70, 200);
-        this.game.load.spritesheet('Devito' ,'assets/Deee.png',1280/2, 640);
+        this.game.load.spritesheet('Devito' ,'assets/Deee.png',2560/4, 640);
         this.game.load.spritesheet('Cyborg' ,'assets/CyborgDevito.png', 1336/2, 596);
         this.game.load.spritesheet('Titles','assets/Titles.png', 1200/3, 100);
         this.game.load.spritesheet('PA','assets/playerblaster.png',2016/21, 96);
+        this.game.load.spritesheet('liverroni','assets/Livesforlvls.png',216/4, 18);
+        this.game.load.spritesheet('danHealth','assets/danielhealth.png', 1024/8, 24);
+        this.game.load.spritesheet('alexHealth','assets/alexanderhealth.png', 1024/8, 24);
+        this.game.load.spritesheet('saladHealth', 'assets/saladHealth.png', 1024/8, 24);
       },
 
       create: function () {

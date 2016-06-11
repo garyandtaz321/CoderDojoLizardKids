@@ -8,42 +8,18 @@ module.exports = Attack;
 Attack.prototype = {
     _attack: null,
     create (){
-        
+        for(i = 0; i <= 300; i + 5)
+        this.game.time.events.add(Phaser.Timer.SECOND * i, addAttack, this);
+        function addAttack(){
+            _attack = this.add.sprite(20, 300,'attack');
+            var flash = _attack.animations.add('flash', [0,1], 2, true);
+            flash.play('flash');
+            this.physics.enable(_attack, Phaser.Physics.ARCADE);
+            _attack.scale.x = 1/2;
+            _attack.scale.y = 1/2;
+        }
     },
     update() {
-        this._keys_down = 0;
-// Check keys
-        if (cursors.left.isDown){
-            this._keys_down = this._keys_down + 1;
-            console.log('left');
-        }
-        if (cursors.up.isDown){
-            this._keys_down++;
-        }
-        if (cursors.right.isDown ){
-            this._keys_down++;
-        }
-        if (cursors.down.isDown) {
-            this._keys_down++;
-        }
-        if (this._keys_down > 1)
-        { clearTimeout(this._timer);
-            this._timer = null;
-            console.log('cleared')
-        } else if (this._timer === null) {
-            this._timer = setTimeout(() => {
-                this._call();
-            }, 1000);
-        }
-    },
-    onFingersLifted(callback) {
-        this._fingers_lifted = callback;
-    },
-    _call() {
-        console.log("FINGERS LIFTED!");
-        if (!this._fingers_lifted) {
-            this._game.state.start("Intro8y");
-        }
-        this._fingers_lifted();
+        this.physics.arcade.collide(sprite, _attack, this.collisionHandler2, null, this);
     }
 };

@@ -63,10 +63,19 @@ var attack13;
 var health;
 var sweat;
 var name;
+var Health;
+var L = 0;
+
 //Danny import
 //var Danny = require("../../common/Danny");
+var Attack = require("../../common/attack");
+var HealthCollisions = {
+    collided: false,
+    locked: false
+};
 Boss2.prototype = {
-    Danny: null,
+    //Danny: null,
+    Attack: null,
     create: function () {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.stage.backgroundColor = '#8B0000';
@@ -75,9 +84,18 @@ Boss2.prototype = {
         //spook.play('spook');
         //this.Danny = new Danny(this.game);
         //console.log(this.Danny);
+        this.Attack = new Attack(this.game);
 
         background = this.add.sprite(0,0, 'space');
         boss = this.add.sprite(100,0,'Devito');
+        var laugh = boss.animations.add('laugh', [2,3], 5, true);
+        laugh.play('laugh');
+        this.sound.play('Laugh');
+        this.game.time.events.add(Phaser.Timer.SECOND * 2, Laugh, this);
+        function Laugh(){
+            boss.animations.stop(null, true);
+            boss.frame=0;
+        }
         sprite = this.add.sprite(567, 400, 'walker');
         health = this.add.sprite(0,0, 'hb');
         sweat = this.add.sprite(0,40, 'sweat');
@@ -93,6 +111,7 @@ Boss2.prototype = {
         attack.anchor.x = 0;
         attack.anchor.y = 0;
         name = this.add.sprite(200, 250, 'name');
+        Health = this.game.add.sprite(0, 582, 'liverroni');
         this.game.time.events.add(Phaser.Timer.SECOND * 4, fadeTitle, this);
         function fadeTitle(){
             this.game.add.tween(name).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
@@ -495,7 +514,6 @@ Boss2.prototype = {
     update: function () {
         this.physics.arcade.collide(sprite, attack, this.collisionHandler2, null, this);
         //this.Danny.update();
-
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
         this.physics.arcade.collide(sprite, bdevito, this.collisionHandler, null, this);
@@ -511,46 +529,47 @@ Boss2.prototype = {
         this.physics.arcade.collide(sprite, attack11, this.collisionHandler12, null, this);
         this.physics.arcade.collide(sprite, attack12, this.collisionHandler13, null, this);
         this.physics.arcade.collide(sprite, attack13, this.collisionHandler14, null, this);
-        this.physics.arcade.collide(sprite, lazer, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazeri, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer2, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer2i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer3, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer3i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4a, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4b, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4c, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4d, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4e, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4ia, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4ib, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4ic, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4id, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer4ie, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer5, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer5i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer6, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer6i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer7, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer7i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer8, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer8i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9a, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9b, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9c, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9d, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9e, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9i, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9ia, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9ib, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9ic, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9id, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer9ie, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer10, this.collisionHandler15, null, this);
-        this.physics.arcade.collide(sprite, lazer10i, this.collisionHandler15, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazeri, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer2, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer2i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer3, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer3i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4a, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4b, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4c, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4d, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4e, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4ia, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4ib, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4ic, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4id, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer4ie, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer5, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer5i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer6, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer6i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer7, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer7i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer8, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer8i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9a, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9b, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9c, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9d, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9e, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9ia, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9ib, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9ic, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9id, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9ie, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer10, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer10i, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite,bdevito, this.KillHandler, null, this);
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
@@ -565,29 +584,39 @@ Boss2.prototype = {
         if (cursors.down.isDown) {
             sprite.body.velocity.y = 200;
         }
-        /*if (cursors.left.isDown && cursors.down.isDown){
-            this.game.state.start("Intro8y");
+
+        if (!HealthCollisions.collided) {
+            HealthCollisions.locked = false;
+            console.log('unlocked')
         }
-        if (cursors.left.isDown && cursors.up.isDown){
+
+
+        if (L == 1){
+            Health.frame=1;
+        } else if(L == 2){
+            Health.frame=2;
+        }else if(L == 3){
+            Health.frame=3;
             this.game.state.start("Intro8y");
+            L=0;
+
         }
-        if (cursors.right.isDown && cursors.down.isDown){
-            this.game.state.start("Intro8y");
-        }
-        if (cursors.right.isDown && cursors.up.isDown){
-            this.game.state.start("Intro8y");
-        }*/
 
     },
-    render: function() {
+   /* render: function() {
         //this.game.debug.body(bdevito);
         this.game.debug.body(sprite);
         //this.game.debug.body(lazer);
 
+    },*/
+    KillHandler: function(obj1, obj2) {
+        if (HealthCollisions.locked) {
+            return;
+        }
 
-    },
-    collisionHandler: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
+        L++;
+        console.log(L);
+        HealthCollisions.locked = true;
     },
    collisionHandler2: function  (obj1, obj2 ) {
        var diminish = health.animations.add('diminish', [0,1], 5, true);
@@ -735,9 +764,7 @@ Boss2.prototype = {
     collisionHandler14: function  (obj1, obj2 ) {
         this.game.state.start("BossDie2");
     },
-    collisionHandler15: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
-    },
+
     shutdown: function () {
         this.music.volume = 1;
         this.music.stop();
