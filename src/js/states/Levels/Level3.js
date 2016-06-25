@@ -125,29 +125,17 @@ Level3.prototype = {
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
-            sprite.body.velocity.y = -200;
-
         }
-
-
         if (cursors.left.isDown) {
-
             sprite.body.velocity.x = -200;
-
-
         }
-        else if (cursors.right.isDown) {
+        if (cursors.right.isDown) {
 
             sprite.body.velocity.x = 200;
         }
 
-        else if (cursors.down.isDown) {
+        if (cursors.down.isDown) {
             sprite.body.velocity.y = 200;
-            sprite.body.velocity.y = 200;
-
-        }
-        else {
-            sprite.body.acceleration.set(0);
         }
 
         console.log(KILLS)

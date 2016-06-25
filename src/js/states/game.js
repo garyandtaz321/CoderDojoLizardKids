@@ -22,7 +22,7 @@ var Bakground;
 var Keys;
 var right;
 var left;
-var Health
+var Health;
 var HealthCollisions = {
     collided: false,
     locked: false
@@ -54,8 +54,8 @@ Game.prototype = {
         pWalk.play('pWalk');
         // Spawning
 
-        end = this.add.sprite(800, 0, 'Endofgame')
-      Goal =  this.add.sprite(0, 0, 'goal')
+        end = this.add.sprite(800, 0, 'Endofgame');
+      Goal =  this.add.sprite(0, 0, 'goal');
 
 
 
@@ -97,29 +97,17 @@ Game.prototype = {
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
-            sprite.body.velocity.y = -200;
-
-        }
-        else {
-            sprite.body.acceleration.set(0);
         }
 
         if (cursors.left.isDown) {
-
             sprite.body.velocity.x = -200;
-
-
         }
-        else if (cursors.right.isDown) {
-
+        if (cursors.right.isDown) {
             sprite.body.velocity.x = 200;
         }
 
-        else if (cursors.down.isDown)
-        {
+        if (cursors.down.isDown) {
             sprite.body.velocity.y = 200;
-            sprite.body.velocity.y = 200;
-
         }
 
     },
@@ -135,7 +123,7 @@ Game.prototype = {
     collisionHandler3: function  (obj1, obj2) {
         this.game.state.start("Level2")
 
-    },
+    }
 
 
 

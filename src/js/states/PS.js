@@ -12,9 +12,14 @@ var psCollisions = {
     collided: false,
     locked: false
 };
+var c;
 PS.prototype = {
-
+    music: null,
     create: function () {
+        this.music = this.game.add.audio('EESong');
+        this.music.volume = 1;
+        this.music.loop = true;
+        this.music.play();
         sprite = this.add.sprite(0,200, 'ps');
         salad = this.add.sprite(400,200,'salad');
         psHealth = this.add.sprite(672,576,'saladHealth');
@@ -106,9 +111,9 @@ PS.prototype = {
 
         }
     },
-    /*render: function(){
+    render: function(){
         this.game.debug.body(salad);
-    },*/
+    },
     potatoHandler: function  (obj1, obj2 ) {
         if (psCollisions.locked) {
             return;
@@ -120,9 +125,9 @@ PS.prototype = {
     },
     KillHandler: function  (obj1, obj2 ) {
         this.game.state.start('Intro8y');
-    }
-    /*shutdown: function () {
+    },
+    shutdown: function () {
         this.music.volume = 1;
         this.music.stop();
-    }*/
+    }
 };

@@ -215,7 +215,6 @@ Boss.prototype = {
         this.music.play();
 
 
-
     },
 
     update: function () {

@@ -39,12 +39,12 @@ Preloader.prototype = {
         this.load.image('lb', 'assets/BigBurst.png');
         this.load.image('space', 'assets/background.jpg');
         this.load.image('DungeonCrawl_ProjectUtumnoTileset', 'assets/DungeonCrawl_ProjectUtumnoTileset.png');
-        // Audio0
         this.load.image('SD','assets/SD.png');
         this.load.image('stan','assets/Stan.png');
         this.load.image('name','assets/DannyD.png');
         this.load.image('punished','assets/Punished.png');
         this.load.image('FN', 'assets/floweynuke.png');
+        this.load.image('salad','assets/potatoprojectile.png');
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
@@ -65,6 +65,7 @@ Preloader.prototype = {
         this.load.audio('hit3','assets/dannyhit3.wav');
         this.load.audio('blaster','assets/blaster.mp3');
         this.load.audio('GunSound','assets/GunSound.mp3');
+        this.load.audio('EESong','assets/EESong.mp3');
 
         // Spritesheets
         this.game.load.spritesheet('startbuttsheet','assets/startbutt.png',392/2, 54);
@@ -81,6 +82,7 @@ Preloader.prototype = {
         this.game.load.spritesheet('bba','assets/try again.png', 582/2, 53);
         this.game.load.spritesheet('bba','assets/try again.png', 582/2, 53);
         this.game.load.spritesheet('liverroni','assets/Livesforlvls.png',216/4, 18);
+        this.game.load.spritesheet('saladHealth','assets/saladHealth.png',1024/8,24);
 
         // Tilemaps
 

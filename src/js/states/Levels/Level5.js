@@ -52,29 +52,20 @@ this.game.world.setBounds(0 ,0 , 3300, 3300);
         this.keystate.update();
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
+
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
-
         }
-        else {
-
-        }
-
         if (cursors.left.isDown) {
-
             sprite.body.velocity.x = -200;
-
-
         }
-        else if (cursors.right.isDown) {
+        if (cursors.right.isDown) {
 
             sprite.body.velocity.x = 200;
         }
 
-        else if (cursors.down.isDown)
-        {
+        if (cursors.down.isDown) {
             sprite.body.velocity.y = 200;
-
         }
     },
     render: function()
@@ -92,7 +83,7 @@ this.game.world.setBounds(0 ,0 , 3300, 3300);
     },
     Win: function()
     {
-        this.game.state.start("Win");
+        this.game.state.start("Boss");
 
 
     },

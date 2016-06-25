@@ -569,7 +569,7 @@ Boss2.prototype = {
         HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer9ie, this.KillHandler, null, this);
         HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer10, this.KillHandler, null, this);
         HealthCollisions.collided = this.physics.arcade.collide(sprite, lazer10i, this.KillHandler, null, this);
-        HealthCollisions.collided = this.physics.arcade.collide(sprite,bdevito, this.KillHandler, null, this);
+        HealthCollisions.collided = this.physics.arcade.collide(sprite, bdevito, this.KillHandler, null, this);
 
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
