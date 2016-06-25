@@ -1,7 +1,7 @@
-
 var Level2 = function () {};
 
 module.exports = Level2;
+
 var Enemie1;
 var Enemie2;
 var Enemie3;

@@ -24,13 +24,16 @@ Menu.prototype = {
     this.asset = this.add.sprite(0, 0, 'titlebk');
 
     // Show title
+    this.asset = this.add.sprite(400, 0, 'title');
+
     this.asset = this.add.button(400, 0, 'title', function() {
       this.game.state.start('EE');
     }, this, 2, 1, 2);
 
+
     selection = 1;
     this.asset = this.add.button(0, 0, 'startbuttsheet', function() {
-      this.game.state.start('Boss3');
+      this.game.state.start('Game');
     }, this, 2, 1, 2);
     this.asset = this.add.button(0, 100, 'restartbuttsheet', function() {
         this.game.state.start('Preloader');

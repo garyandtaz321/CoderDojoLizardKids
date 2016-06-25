@@ -1,5 +1,7 @@
-var Player = require('../models/player');
-
+var Player = require('../common/keystate/player');
+var KeyState = require("../common/keystate/Keystate");
+var CzechPoints = require ("../common/keystate/CzechPoints");
+var CzechPoints1;
 var Game = function () {
     this.testentity = null;
 };
@@ -17,7 +19,7 @@ var tweenB;
 var group;
 var end;
 this.bmd = null;
-var cursors;
+
 var Bakground;
 var Keys;
 var right;
@@ -30,14 +32,14 @@ var HealthCollisions = {
 module.exports = Game;
 
 Game.prototype = {
-
+    keystate: null,
     create: function () {
-
+        this.keystate = new KeyState(this.game);
         Bakground = this.add.sprite(0, 0, 'BK1');
         Health = this.game.add.sprite(100, 100, 'liverroni');
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
-        for (var i = 0; i < 0; i++)
+        for (var i = 0; i < 5; i++)
         {
             var s = Enemies.create(this.game.rnd.integerInRange(456, 300), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
@@ -84,12 +86,13 @@ Game.prototype = {
     },
 
     update: function () {
+
         this.physics.arcade.collide(sprite, Enemies, this.collisionHandler, null, this);
         this.physics.arcade.collide(sprite, Enemies1, this.collisionHandler2, null, this);
         this.physics.arcade.collide(sprite, Goal, this.collisionHandler3, null, this);
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-
+        this.keystate.update();
 
 
 

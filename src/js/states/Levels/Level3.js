@@ -30,6 +30,7 @@ var HealthCollisions = {
 };
 //Keystate import
 var KeyState = require("../../common/keystate/Keystate");
+
 Level3.prototype = {
     keystate: null,
     create: function () {

@@ -12,6 +12,7 @@ var goal1;
 //Keystate import
 var KeyState = require("../../common/keystate/Keystate");
 var Health = require("../../common/keystate/Health");
+
 Level5.prototype = {
     keystate: null,
     health: null,

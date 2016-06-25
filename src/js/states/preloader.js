@@ -29,7 +29,7 @@ Preloader.prototype = {
         this.load.image('ZAMBIE','assets/Devito.png');
         this.load.image('Player','assets/sausage.png');
         this.load.image('title','assets/sausagefingerstitle.png');
-        this.load.image('titlebk','assets/shreddedbeef.png');
+        this.load.image('titlebk','assets/bigger.png');
         this.load.image('Winner','assets/WINNA.jpg');
         this.load.image('bullet' ,'assets/bullet5.png' );
         this.load.image('lazer','assets/lazer.png');

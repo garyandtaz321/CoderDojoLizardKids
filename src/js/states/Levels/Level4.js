@@ -21,6 +21,7 @@ var  enemyBullet;
 //Keystate import
 var KeyState = require("../../common/keystate/Keystate");
 var Health = require("../../common/keystate/Health");
+
 var HealthCollisions = {
     collided: false,
     locked: false
@@ -33,14 +34,13 @@ Level4.prototype = {
         Background = this.add.sprite(0, 0, 'BK4');
         this.health = new Health(this.game);
         this.keystate = new KeyState(this.game);
-        this.health = new Health(this.game)
         console.log(this.keystate);
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
         cursors = this.input.keyboard.createCursorKeys();
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < 4; i++) {
             var alien = Enemie1.create(this.game.rnd.integerInRange(600, 600), this.game.rnd.integerInRange(25, 345), 'ZAMBIE');
 
             this.game.physics.enable(alien, Phaser.Physics.ARCADE);
@@ -91,7 +91,7 @@ Level4.prototype = {
 
         this.physics.arcade.collide(sprite,enemyBullets, this.KillHandler, null, this);
 
-
+        this.keystate.update();
 
 
 
