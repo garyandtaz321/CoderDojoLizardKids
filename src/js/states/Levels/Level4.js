@@ -90,6 +90,7 @@ Level4.prototype = {
         this.physics.arcade.collide(sprite, Goal, this.goalHandler, null, this);
 
         this.physics.arcade.collide(sprite,enemyBullets, this.KillHandler, null, this);
+        this.physics.arcade.collide(sprite,Enemie1, this.KillHandler, null, this);
 
         this.keystate.update();
 
@@ -143,7 +144,7 @@ Level4.prototype = {
 
     },
     collisionHandler7: function (obj1, obj2) {
-
+        this.health.update();
     },
 
 

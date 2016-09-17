@@ -1,5 +1,5 @@
 var Level2 = function () {};
-
+var Health = require("../../common/keystate/Health");
 module.exports = Level2;
 
 var Enemie1;
@@ -7,7 +7,6 @@ var Enemie2;
 var Enemie3;
 var Enemie4;
 var Enemie5;
-var Health;
 var L = 0;
 var Enemie6;
 var KILLS = 0;
@@ -29,17 +28,17 @@ var KeyState = require("../../common/keystate/Keystate");
 Level2.prototype = {
 
     keystate: null,
-
+healths: null,
     create: function() {
 
 
-
+        this.healths = new Health(this.game);
 
 
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Background = this.add.sprite(0, 0, 'BK2');
-        Health = this.game.add.sprite(100, 100, 'liverroni');
+
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         Enemie1 = this.game.make.group();
         Enemie2 = this.game.make.group();
@@ -161,7 +160,7 @@ Level2.prototype = {
     sprite.body.allowRotation = false;
         explosions = this.game.add.group();
         explosions.createMultiple(30, 'kaboom');
-
+        this.healths.create();
 },
 
 
@@ -173,7 +172,7 @@ Level2.prototype = {
     update: function() {
         sprite.body.velocity.x = 0;
         sprite.body.velocity.y = 0;
-        HealthCollisions.collided = this.physics.arcade.collide(sprite,Enemie1 || Enemie2 || Enemie3 ||Enemie4 ||Enemie5 || Enemie6, this.collisionHandler7, null, this);
+
         this.keystate.update();
         if (cursors.up.isDown) {
             sprite.body.velocity.y = -200;
@@ -279,14 +278,7 @@ if (KILLS == 6)
         ++KILLS;
     },
     collisionHandler7: function  (obj1, obj2 ) {
-        if (HealthCollisions.locked) {
-            return;
-        }
-
-        L++;
-        console.log(L);
-        console.log("IMPACT");
-        HealthCollisions.locked = true;
+        this.healths.update();
     },
 
 

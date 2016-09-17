@@ -31,7 +31,7 @@ Keystate.prototype = {
         } else if (this._timer === null) {
             this._timer = setTimeout(() => {
                 this._call();
-            }, 1000);
+            }, 2000);
         }
     },
     onFingersLifted(callback) {

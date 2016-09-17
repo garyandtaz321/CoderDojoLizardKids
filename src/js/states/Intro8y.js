@@ -37,12 +37,7 @@ Intro8y.prototype = {
     Button: function(){
 
         this.asset = this.add.button(400, 400, 'bba', function() {
-            if (this.game.stage.backgroundColor = '#8B0000'){
-                this.game.state.start('Boss');
-            }
-            else {
-                this.game.state.start('game');
-            }
+            this.game.state.start('Preloader');
         }, this, 2, 1, 2);
 console.log("KAPPA");
     },

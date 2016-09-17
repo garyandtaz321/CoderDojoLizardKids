@@ -1,6 +1,7 @@
 var Player = require('../common/keystate/player');
 var KeyState = require("../common/keystate/Keystate");
 var CzechPoints = require ("../common/keystate/CzechPoints");
+var Health = require("../common/keystate/Health");
 var CzechPoints1;
 var Game = function () {
     this.testentity = null;
@@ -24,7 +25,7 @@ var Bakground;
 var Keys;
 var right;
 var left;
-var Health;
+
 var HealthCollisions = {
     collided: false,
     locked: false
@@ -33,10 +34,14 @@ module.exports = Game;
 
 Game.prototype = {
     keystate: null,
+    health: null,
     create: function () {
+        this.health = new Health(this.game);
+
         this.keystate = new KeyState(this.game);
         Bakground = this.add.sprite(0, 0, 'BK1');
-        Health = this.game.add.sprite(100, 100, 'liverroni');
+
+console.log(this.health);
        Enemies =  this.game.make.group();
         Enemies1 =  this.game.make.group();
         for (var i = 0; i < 5; i++)
@@ -82,7 +87,7 @@ Game.prototype = {
         Enemies.setAll('body.bounce.x', 1);
         Enemies.setAll('body.bounce.y', 1);
         Enemies.setAll('body.minBounceVelocity', 0);
-
+        this.health.create();
     },
 
     update: function () {
@@ -116,11 +121,13 @@ Game.prototype = {
     },
 
     collisionHandler: function  (obj1, obj2 ) {
-        this.game.state.start("Intro8y");
+        this.health.update();
+
 
     },
     collisionHandler2: function  (obj1, obj2) {
-        this.game.state.start("Intro8y");
+        this.health.update();
+
 
     },
     collisionHandler3: function  (obj1, obj2) {
