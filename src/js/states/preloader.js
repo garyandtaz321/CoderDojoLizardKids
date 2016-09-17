@@ -16,7 +16,7 @@ Preloader.prototype = {
         this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
         this.load.setPreloadSprite(this.asset);
 
-        this.load.image('logo', 'assets/LizardBoys.gif');
+        this.load.image('logo', 'assets/CDT.png');
         this.load.image('BK1', 'assets/firstbk.png');
         this.load.image('BK2', 'assets/secondbk.png');
         this.load.image('BK3', 'assets/thirdbk.png');

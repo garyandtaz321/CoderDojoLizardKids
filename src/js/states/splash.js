@@ -7,10 +7,13 @@ var Splash = function () {
 module.exports = Splash;
 
 Splash.prototype = {
+
   create: function () {
-    this.asset = this.add.sprite(160, 60, 'logo');
-    this.asset.scale.x = 0.5;
-    this.asset.scale.y = 0.5;
+    this.game.stage.backgroundColor = "#FFFFFF";
+
+    this.asset = this.add.sprite(25, 200, 'logo');
+    this.asset.scale.x = 1.5;
+    this.asset.scale.y = 1.5;
     this.asset.alpha = 0;
     this.faded_in = false;
 
