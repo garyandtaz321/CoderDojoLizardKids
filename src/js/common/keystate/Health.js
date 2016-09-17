@@ -10,7 +10,7 @@ var Locked = false;
 Health.prototype = {
 
     create () {
-        Bar = this._game.add.sprite(345, 100, 'liverroni')
+        Bar = this._game.add.sprite(0, 500, 'liverroni')
 console.log(Locked);
 
     },
