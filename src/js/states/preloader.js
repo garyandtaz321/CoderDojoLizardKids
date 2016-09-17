@@ -48,7 +48,7 @@ Preloader.prototype = {
         // Audio
 
         this.load.audio("gameboop","assets/BootSound.mp3");
-        this.load.audio("titlesong","assets/trolltoll.wav");
+        this.load.audio("titlesong","assets/ATYD.mp3");
         this.load.audio("Instructsong","assets/Kappa123.wav");
         this.load.audio("Laugh" ,"assets/Laugh.mp3");
         this.load.audio('WinSong', 'assets/sunny.mp3');
